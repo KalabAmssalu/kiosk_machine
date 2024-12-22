@@ -13,5 +13,13 @@
 		"changeLanguage": "ቋንቋን ለውጥ",
 		"english": "እንግሊዝኛ",
 		"amharic": "አማርኛ"
+	},
+	"Login": {
+		"loginTitle": "መግቢያ",
+		"loginPrompt": "የመለያ መግቢያ ይግቡ",
+		"email": "ኢሜይል",
+		"password": "የመግቢያ ቃል",
+		"forgotPassword": "የመግቢያ ቃል ይታያል?",
+		"login": "መግቢያ"
 	}
 }

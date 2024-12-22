@@ -3,7 +3,7 @@ import { withAuthentication } from "./middlewares/withAuthentication";
 import { withIntl } from "./middlewares/withIntl";
 import { withLogging } from "./middlewares/withLogging";
 
-const middleware = [withAuthentication, withIntl, withLogging];
+const middleware = [withIntl, withLogging];
 export default stackMiddlewares(middleware);
 
 export const config = {

@@ -15,5 +15,117 @@
 		"changeLanguage": "Change Language",
 		"english": "English",
 		"amharic": "Amharic"
+	},
+	"Login": {
+		"loginTitle": "Kiosk Machine DMS Login",
+		"loginPrompt": "Sign in to your account",
+		"email": "Email",
+		"password": "Password",
+		"forgotPassword": "Forgot Password?",
+		"login": "Login"
+	},
+	"LedgerForm": {
+		"letter": {
+			"label": "Letter",
+			"description": "Upload a letter from the organization"
+		},
+		"saveAndContinue": "Save and Continue",
+		"uploading": "Uploading...",
+		"uploadFiles": "Upload Files",
+		"uploadFilesDescription": "Upload files to the organization",
+		"uploadFilesError": "Error uploading files",
+		"uploadFilesSuccess": "Files uploaded successfully",
+		"uploadFilesLimit": "You can upload up to 5 files",
+		"uploadFilesAcceptedTypes": "Accepted file types: .pdf, .doc, .docx, .jpg, .jpeg, .png, .gif, .bmp, .tiff, .tif, .webp",
+		"uploadFilesMaxSize": "Maximum file size: 10MB",
+		"uploadFilesMaxFiles": "Maximum number of files: 5",
+		"uploadFilesRemove": "Remove",
+		"uploadFilesUpload": "Upload",
+		"uploadFilesUploading": "Uploading...",
+		"uploadFilesUploaded": "Uploaded",
+		"personal_information": "Personal Information",
+		"ledger_information": "Ledger Information",
+		"document_upload": "Document Upload",
+		"organization_information": "Organization Information",
+		"contact_information": "Contact Information",
+		"fields": {
+			"letter": {
+				"label": "Letter",
+				"description": "Upload a letter from the organization",
+				"placeholder": "Upload a letter from the organization",
+				"error": "Please upload a letter from the organization"
+			},
+			"email_address": {
+				"label": "Email Address",
+				"description": "Enter the email address of the organization",
+				"placeholder": "Enter the email address of the organization",
+				"error": "Please enter the email address of the organization"
+			},
+			"organization_name": {
+				"label": "Organization Name",
+				"description": "Enter the name of the organization",
+				"placeholder": "Enter the name of the organization",
+				"error": "Please enter the name of the organization"
+			},
+			"organization_address": {
+				"label": "Organization Address",
+				"description": "Enter the address of the organization",
+				"placeholder": "Enter the address of the organization",
+				"error": "Please enter the address of the organization"
+			},
+			"first_name": {
+				"label": "First Name",
+				"description": "Enter the first name of the organization",
+				"placeholder": "Enter the first name of the organization",
+				"error": "Please enter the first name of the organization"
+			},
+			"last_name": {
+				"label": "Last Name",
+				"description": "Enter the last name of the organization",
+				"placeholder": "Enter the last name of the organization",
+				"error": "Please enter the last name of the organization"
+			},
+			"phone_number": {
+				"label": "Phone Number",
+				"description": "Enter the phone number of the organization",
+				"placeholder": "Enter the phone number of the organization",
+				"error": "Please enter the phone number of the organization"
+			},
+			"organization_type": {
+				"label": "Organization Type",
+				"description": "Select the type of the organization",
+				"placeholder": "Select the type of the organization",
+				"error": "Please select the type of the organization",
+				"options": {
+					"private": "Private",
+					"EthioPosta": "EthioPosta",
+					"DHL": "DHL",
+					"other": "Other"
+				}
+			},
+			"gender": {
+				"label": "Gender",
+				"description": "Select the gender of the organization",
+				"placeholder": "Select the gender of the organization",
+				"error": "Please select the gender of the organization",
+				"options": {
+					"male": "Male",
+					"female": "Female",
+					"not_prefer_to_say": "Not Prefer to Say"
+				}
+			},
+			"middle_name": {
+				"label": "Middle Name",
+				"description": "Enter the middle name of the organization",
+				"placeholder": "Enter the middle name of the organization",
+				"error": "Please enter the middle name of the organization"
+			},
+			"id_number": {
+				"label": "ID Number",
+				"description": "Enter the ID number of the organization",
+				"placeholder": "Enter the ID number of the organization",
+				"error": "Please enter the ID number of the organization"
+			}
+		}
 	}
 }
