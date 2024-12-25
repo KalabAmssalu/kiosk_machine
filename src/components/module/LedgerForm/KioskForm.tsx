@@ -1,15 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { Progress } from "@/components/ui/progress";
+import Preview from "@/providers/preview";
 import {
 	type MemberInfoFormValues,
 	createMemeberInfoSchema,
@@ -25,7 +30,10 @@ export default function KioskMemberForm() {
 	const memberInfoSchema = createMemeberInfoSchema(t);
 	const [step, setStep] = useState(0);
 	const [progress, setProgress] = useState(0);
-
+	// const { mutate: ProviderMutation, isSuccess } = useAddproviderMutation();
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const printRef = useRef<HTMLDivElement>(null);
+	const router = useRouter();
 	const form = useForm<MemberInfoFormValues>({
 		resolver: zodResolver(memberInfoSchema),
 		defaultValues: {
@@ -40,6 +48,24 @@ export default function KioskMemberForm() {
 			letter: null,
 		},
 	});
+
+	const [isOpen, setIsOpen] = useState(false);
+
+	const handleDownloadPDF = async () => {
+		if (printRef.current) {
+			const canvas = await html2canvas(printRef.current);
+			const imgData = canvas.toDataURL("image/png");
+			const pdf = new jsPDF("p", "mm", "a4");
+			const imgProps = pdf.getImageProperties(imgData);
+			const pdfWidth = pdf.internal.pageSize.getWidth();
+			const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+			pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+			pdf.save("provider_information.pdf");
+		}
+	};
+	const handleConfirm = () => {
+		setIsOpen(true);
+	};
 
 	const steps = [
 		{
@@ -60,26 +86,66 @@ export default function KioskMemberForm() {
 			title: t("contact_information"),
 			fields: ["phone_number"] as const,
 		},
-		{ title: t("document_upload"), fields: ["letter"] as const },
+		{
+			title: t("document_upload"),
+			fields: ["letter"] as const,
+		},
+		{
+			title: t("Preview"),
+			fields: <Preview onConfirm={handleConfirm} ref={printRef} />,
+		},
 	];
 
+	const [previewData, setPreviewData] = useState<MemberInfoFormValues | null>(
+		null
+	);
 	const onSubmit = (data: MemberInfoFormValues) => {
-		console.log("Submitted data:", data);
-		// Handle form submission
+		console.log("data", data);
+		setIsSubmitting(true);
+		try {
+			if (!data) {
+				toast.error("No provider data found. Please check your input.");
+				return;
+			}
+
+			// await ProviderMutation(data);
+			// if (isSuccess) {
+			// 	// Navigate to the success page with query parameters
+			// 	const type = "provider"; // Replace with the actual type source
+			// 	router.push(
+			// 		`/success?type=${type}&title=Registration Successful&message=Congratulations! You're now part of our platform.&redirectPath=/home&buttonText=Go to Dashboard` as `/${string}`
+			// 	);
+			// 	// dispatch(ClearProviderSlice());
+			// 	handleDownloadPDF();
+			// }
+		} catch (error) {
+			toast.error("Failed to submit Member data. Please try again.");
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
+	const onError = (errors: any) => {
+		console.error("Validation errors:", errors);
 	};
 
 	const nextStep = () => {
-		const fields = steps[step].fields;
-		const isStepValid = fields.every(
-			(field) =>
-				form.getFieldState(field).isDirty && !form.getFieldState(field).error
-		);
+		const stepData = steps[step];
 
-		if (isStepValid) {
+		if (Array.isArray(stepData.fields)) {
+			const isStepValid = stepData.fields.every(
+				(field) =>
+					form.getFieldState(field).isDirty && !form.getFieldState(field).error
+			);
+
+			if (isStepValid) {
+				setStep((prev) => Math.min(prev + 1, steps.length - 1));
+				setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
+			} else {
+				form.trigger(stepData.fields);
+			}
+		} else {
 			setStep((prev) => Math.min(prev + 1, steps.length - 1));
 			setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
-		} else {
-			form.trigger(fields as any);
 		}
 	};
 
@@ -98,7 +164,10 @@ export default function KioskMemberForm() {
 			<CardContent>
 				<Progress value={progress} className="w-full mb-6" />
 				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+					<form
+						onSubmit={form.handleSubmit(onSubmit, onError)}
+						className="space-y-6"
+					>
 						{step === 0 && (
 							<>
 								<KioskFormField
@@ -199,7 +268,7 @@ export default function KioskMemberForm() {
 								type="button"
 								onClick={prevStep}
 								disabled={step === 0}
-								className="text-2xl py-6 px-8"
+								className="text-4xl py-10 px-12"
 							>
 								Previous
 							</Button>
@@ -207,14 +276,14 @@ export default function KioskMemberForm() {
 								<Button
 									type="button"
 									onClick={nextStep}
-									className="text-2xl py-6 px-8 bg-blue-500 hover:bg-blue-600"
+									className="text-4xl py-10 px-12 bg-blue-500 hover:bg-blue-600"
 								>
 									Next
 								</Button>
 							) : (
 								<Button
 									type="submit"
-									className="text-2xl py-6 px-8 bg-green-500 hover:bg-green-600"
+									className="text-4xl py-10 px-12 bg-green-500 hover:bg-green-600"
 								>
 									Submit
 								</Button>

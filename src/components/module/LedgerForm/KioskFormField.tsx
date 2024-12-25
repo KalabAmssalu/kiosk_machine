@@ -31,12 +31,12 @@ export default function KioskFormField({
 			name={name}
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel className="text-xl">{t(labelKey)}</FormLabel>
+					<FormLabel className="text-3xl">{t(labelKey)}</FormLabel>
 					<FormControl>
 						<Input
 							{...field}
 							placeholder={t(placeholderKey)}
-							className="text-xl py-6"
+							className="text-3xl py-10"
 						/>
 					</FormControl>
 					<FormMessage className="text-lg" />

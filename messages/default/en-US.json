@@ -29,6 +29,7 @@
 			"label": "Letter",
 			"description": "Upload a letter from the organization"
 		},
+		"select_placeholder": "Select an option",
 		"saveAndContinue": "Save and Continue",
 		"uploading": "Uploading...",
 		"uploadFiles": "Upload Files",

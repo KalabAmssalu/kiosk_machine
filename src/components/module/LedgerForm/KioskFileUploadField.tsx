@@ -31,17 +31,17 @@ export default function KioskFileUploadField({
 			name={name}
 			render={({ field: { onChange, ...field } }) => (
 				<FormItem>
-					<FormLabel className="text-xl">{t(labelKey)}</FormLabel>
+					<FormLabel className="text-3xl">{t(labelKey)}</FormLabel>
 					<FormControl>
 						<Input
 							type="file"
 							onChange={(e) => onChange(e.target.files?.[0])}
 							{...field}
 							value={undefined}
-							className="text-xl py-6"
+							className="text-2xl py-10"
 						/>
 					</FormControl>
-					<p className="text-lg text-muted-foreground mt-2">
+					<p className="text-2xl text-muted-foreground mt-2">
 						{t(descriptionKey)}
 					</p>
 					<FormMessage className="text-lg" />

@@ -37,10 +37,10 @@ export default function KioskSelectField({
 			name={name}
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel className="text-xl">{t(labelKey)}</FormLabel>
+					<FormLabel className="text-3xl">{t(labelKey)}</FormLabel>
 					<Select onValueChange={field.onChange} defaultValue={field.value}>
 						<FormControl>
-							<SelectTrigger className="text-xl py-6">
+							<SelectTrigger className="text-3xl py-10">
 								<SelectValue placeholder={t("select_placeholder")} />
 							</SelectTrigger>
 						</FormControl>
@@ -49,7 +49,7 @@ export default function KioskSelectField({
 								<SelectItem
 									key={option.value}
 									value={option.value}
-									className="text-xl py-4"
+									className="text-3xl py-10"
 								>
 									{option.label}
 								</SelectItem>
