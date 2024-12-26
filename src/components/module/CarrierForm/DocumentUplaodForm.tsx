@@ -88,7 +88,7 @@ export default function DocumentUploadForm({
 				{visible && (
 					<div className="flex w-full justify-end items-end">
 						<Button type="submit" className="bg-green-500">
-							{t("SaveAndContinue")}
+							Save and Continue
 						</Button>
 					</div>
 				)}

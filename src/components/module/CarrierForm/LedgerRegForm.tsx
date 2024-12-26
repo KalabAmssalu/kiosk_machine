@@ -7,6 +7,7 @@ import jsPDF from "jspdf";
 import { CheckCheck, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
+import { useAddLedger } from "@/actions/Query/ledger_Query/request";
 import StepIndicator from "@/components/shared/Stepper/step-indicator";
 import {
 	AlertDialog,
@@ -129,6 +130,7 @@ export default function LedgerRegForm() {
 	const updateMetadataUpload = (data: MetaDataType) => {
 		console.log("metadata uploaded", data);
 	};
+	const { mutate: addLedger } = useAddLedger();
 	const handleSubmit = async () => {
 		setIsSubmitting(true);
 		try {
@@ -138,6 +140,7 @@ export default function LedgerRegForm() {
 			}
 			const updatedData = { ...formData, letters, attachments };
 			console.log("data", updatedData);
+			// addLedger(updatedData);
 
 			handleDownloadPDF();
 		} catch (error) {
