@@ -1,9 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import { useTranslations } from "next-intl";
 
+import { useSignIn } from "@/actions/Query/auth_Query/request";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -19,22 +18,21 @@ import { Label } from "@/components/ui/label";
 
 export function LoginForm() {
 	const t = useTranslations("Login");
-	const router = useRouter();
-	// const { mutate: signIn } = useSignIn(); // Use the signIn mutation
+	const { mutate: signIn } = useSignIn(); // Use the signIn mutation
 
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
-		router.push("/dashboard/home" as `/${string}`);
+
 		console.log("signIn");
-		const username = event.target.email.value;
+		const email = event.target.email.value;
 		const password = event.target.password.value;
 
 		const data = {
-			username,
+			email,
 			password,
 		};
 
-		// signIn(data);
+		signIn(data);
 	};
 
 	return (

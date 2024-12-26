@@ -62,19 +62,7 @@ export async function signUp(credentials: ICredentials) {
 
 export async function signIn(credentials: ICredentials) {
 	try {
-		const response = await axiosInstance.post("auth/login/", credentials);
-
-		// Access the Tenants
-		const tenants = response.data?.tenants;
-		let domain = null;
-
-		// If tenants exist, pick the primary domain
-		if (tenants && tenants.length > 0) {
-			const primaryDomain = tenants[0].domains.find((d: any) => d.is_primary);
-			domain = primaryDomain
-				? primaryDomain.domain
-				: tenants[0].domains[0].domain;
-		}
+		const response = await axiosInstance.post("auth/kiosklogin/", credentials);
 
 		// Session data
 		const sessionId = response.data.session;
@@ -82,11 +70,8 @@ export async function signIn(credentials: ICredentials) {
 
 		// Encrypt session with or without tenants
 		let session;
-		if (tenants) {
-			session = await encrypt({ sessionId, expires, domain, tenants });
-		} else {
-			session = await encrypt({ sessionId, expires, domain });
-		}
+
+		session = await encrypt({ sessionId, expires });
 
 		// Set session cookie
 		cookies().set(SESSION_NAME, session, {
