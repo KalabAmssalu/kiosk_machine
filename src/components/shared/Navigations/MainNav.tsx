@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 // import { IMAGES } from "@/constants/files";
+import LocaleSwitcher from "../DropDown/LocaleSwitcher";
 import { NavigationMenuConf } from "./NavigationMenu";
 
 const MainNav = () => {
@@ -48,6 +49,7 @@ const MainNav = () => {
 
 					<div className="mr-0 flex items-center gap-2 md:mr-2">
 						<ModeToggle />
+						<LocaleSwitcher />
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<Button

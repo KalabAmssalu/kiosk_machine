@@ -25,107 +25,229 @@
 		"login": "Login"
 	},
 	"LedgerForm": {
-		"letter": {
-			"label": "Letter",
-			"description": "Upload a letter from the organization"
-		},
-		"select_placeholder": "Select an option",
-		"saveAndContinue": "Save and Continue",
-		"uploading": "Uploading...",
-		"uploadFiles": "Upload Files",
-		"uploadFilesDescription": "Upload files to the organization",
-		"uploadFilesError": "Error uploading files",
-		"uploadFilesSuccess": "Files uploaded successfully",
-		"uploadFilesLimit": "You can upload up to 5 files",
-		"uploadFilesAcceptedTypes": "Accepted file types: .pdf, .doc, .docx, .jpg, .jpeg, .png, .gif, .bmp, .tiff, .tif, .webp",
-		"uploadFilesMaxSize": "Maximum file size: 10MB",
-		"uploadFilesMaxFiles": "Maximum number of files: 5",
-		"uploadFilesRemove": "Remove",
-		"uploadFilesUpload": "Upload",
-		"uploadFilesUploading": "Uploading...",
-		"uploadFilesUploaded": "Uploaded",
-		"personal_information": "Personal Information",
-		"ledger_information": "Ledger Information",
-		"document_upload": "Document Upload",
-		"organization_information": "Organization Information",
-		"contact_information": "Contact Information",
+		"carrier_information": "Carrier Information",
+		"DocumentUpload": "Document Upload",
+		"DocumentInfo": "Document Information",
+		"recipient_info": "Recipient Information",
 		"fields": {
-			"letter": {
-				"label": "Letter",
-				"description": "Upload a letter from the organization",
-				"placeholder": "Upload a letter from the organization",
-				"error": "Please upload a letter from the organization"
+			"carrier_person_first_name": {
+				"label": "Carrier First Name",
+				"placeholder": "Enter Carrier First Name",
+				"description": "Enter Carrier First Name",
+				"error": "Carrier First Name is required"
 			},
-			"email_address": {
-				"label": "Email Address",
-				"description": "Enter the email address of the organization",
-				"placeholder": "Enter the email address of the organization",
-				"error": "Please enter the email address of the organization"
+			"carrier_person_middle_name": {
+				"label": "Carrier Middle Name",
+				"placeholder": "Enter Carrier Middle Name",
+				"description": "Enter Carrier Middle Name",
+				"error": "Carrier Middle Name is required"
 			},
-			"organization_name": {
-				"label": "Organization Name",
-				"description": "Enter the name of the organization",
-				"placeholder": "Enter the name of the organization",
-				"error": "Please enter the name of the organization"
+			"carrier_person_last_name": {
+				"label": "Carrier Last Name",
+				"placeholder": "Enter Carrier Last Name",
+				"description": "Enter Carrier Last Name",
+				"error": "Carrier Last Name is required"
 			},
-			"organization_address": {
-				"label": "Organization Address",
-				"description": "Enter the address of the organization",
-				"placeholder": "Enter the address of the organization",
-				"error": "Please enter the address of the organization"
+			"carrier_phone_number": {
+				"label": "Carrier Phone Number",
+				"placeholder": "Enter Carrier Phone Number",
+				"description": "Enter Carrier Phone Number",
+				"error": "Carrier Phone Number is required"
 			},
-			"first_name": {
-				"label": "First Name",
-				"description": "Enter the first name of the organization",
-				"placeholder": "Enter the first name of the organization",
-				"error": "Please enter the first name of the organization"
-			},
-			"last_name": {
-				"label": "Last Name",
-				"description": "Enter the last name of the organization",
-				"placeholder": "Enter the last name of the organization",
-				"error": "Please enter the last name of the organization"
-			},
-			"phone_number": {
-				"label": "Phone Number",
-				"description": "Enter the phone number of the organization",
-				"placeholder": "Enter the phone number of the organization",
-				"error": "Please enter the phone number of the organization"
+			"carrier_type": {
+				"label": "Carrier Type",
+				"placeholder": "Enter Carrier Type",
+				"description": "Enter Carrier Type",
+				"error": "Carrier Type is required",
+				"options": {
+					"Individual": "Individual",
+					"Organization": "Organization"
+				}
 			},
 			"organization_type": {
 				"label": "Organization Type",
-				"description": "Select the type of the organization",
-				"placeholder": "Select the type of the organization",
-				"error": "Please select the type of the organization",
+				"placeholder": "Enter Organization Type",
+				"description": "Enter your Organization Type",
+				"error": "Organization Type is required",
 				"options": {
 					"private": "Private",
-					"EthioPosta": "EthioPosta",
+					"EthioPosta": "Ethiopian Posta",
 					"DHL": "DHL",
-					"other": "Other"
+					"Other": "Other"
 				}
 			},
-			"gender": {
-				"label": "Gender",
-				"description": "Select the gender of the organization",
-				"placeholder": "Select the gender of the organization",
-				"error": "Please select the gender of the organization",
+			"carrier_organization_id": {
+				"label": "Carrier Organization ID",
+				"placeholder": "Enter Carrier Organization ID",
+				"description": "Enter Carrier Organization ID",
+				"error": "Carrier Organization ID is required"
+			},
+			"carrier_plate_number": {
+				"label": "Carrier Plate Number",
+				"placeholder": "Enter Carrier Plate Number",
+				"description": "Enter Carrier Plate Number",
+				"error": "Carrier Plate Number is required"
+			},
+			"letters": {
+				"label": "Letters",
+				"placeholder": "Enter Letters",
+				"description": "Enter Letters",
+				"error": "Letters is required"
+			},
+			"attachments": {
+				"label": "Attachments",
+				"placeholder": "Enter Attachments",
+				"description": "Enter Attachments",
+				"error": "Attachments is required"
+			},
+			"additional_message": {
+				"label": "Additional Message",
+				"placeholder": "Enter Additional Message",
+				"description": "Enter Additional Message",
+				"error": "Additional Message is required"
+			},
+			"document_type": {
+				"label": "Document Type",
+				"placeholder": "Enter Document Type",
+				"description": "Enter Document Type",
+				"error": "Document Type is required"
+			},
+			"document_date": {
+				"label": "Document Date",
+				"placeholder": "Enter Document Date",
+				"description": "Enter Document Date",
+				"error": "Document Date is required"
+			},
+			"document_owner": {
+				"label": "Document Owner",
+				"placeholder": "Enter Document Owner",
+				"description": "Enter Document Owner",
+				"error": "Document Owner is required"
+			},
+			"ledger_id": {
+				"label": "Ledger ID",
+				"placeholder": "Enter Ledger ID",
+				"description": "Enter Ledger ID",
+				"error": "Ledger ID is required"
+			},
+			"ledger_subject": {
+				"label": "Ledger Subject",
+				"placeholder": "Enter Ledger Subject",
+				"description": "Enter Ledger Subject",
+				"error": "Ledger Subject is required"
+			},
+			"ledger_description": {
+				"label": "Ledger Description",
+				"placeholder": "Enter Ledger Description",
+				"description": "Enter Ledger Description",
+				"error": "Ledger Description is required"
+			},
+			"ledger_type": {
+				"label": "Ledger Type",
+				"placeholder": "Enter Ledger Type",
+				"description": "Enter Ledger Type",
+				"error": "Ledger Type is required"
+			},
+			"delivery_medium": {
+				"label": "Delivery Medium",
+				"placeholder": "Enter Delivery Medium",
+				"description": "Enter Delivery Medium",
+				"error": "Delivery Medium is required",
 				"options": {
-					"male": "Male",
-					"female": "Female",
-					"not_prefer_to_say": "Not Prefer to Say"
+					"RIDE": "RIDE",
+					"POSTA": "POSTA",
+					"PRIVATE": "PRIVATE",
+					"MOTOR": "MOTOR",
+					"OTHER": "OTHER"
 				}
 			},
-			"middle_name": {
-				"label": "Middle Name",
-				"description": "Enter the middle name of the organization",
-				"placeholder": "Enter the middle name of the organization",
-				"error": "Please enter the middle name of the organization"
+			"external_reference_id": {
+				"label": "External Reference ID",
+				"placeholder": "External Reference ID",
+				"description": "Enter External Reference ID",
+				"error": "External Reference ID is invalid"
 			},
-			"id_number": {
-				"label": "ID Number",
-				"description": "Enter the ID number of the organization",
-				"placeholder": "Enter the ID number of the organization",
-				"error": "Please enter the ID number of the organization"
+			"delivery_channel": {
+				"label": "Delivery Channel",
+				"placeholder": "Enter Delivery Channel",
+				"description": "Enter Delivery Channel",
+				"error": "Delivery Channel is required",
+				"options": {
+					"INPERSON": "THE DOCUMENT SENDER ORGANIZATION  ",
+					"DELIVERY": "DELIVERY ORGANIZATION"
+				}
+			},
+			"delivery_organization": {
+				"label": "Delivery Organization",
+				"placeholder": "Enter Delivery Organization",
+				"description": "Enter Delivery Organization",
+				"error": "Delivery Organization is required"
+			},
+			"tracking_number": {
+				"label": "Tracking Number",
+				"placeholder": "Enter Tracking Number",
+				"description": "Enter Tracking Number",
+				"error": "Tracking Number is required"
+			},
+			"expected_delivery_date": {
+				"label": "Expected Delivery Date",
+				"placeholder": "Enter Expected Delivery Date",
+				"description": "Enter Expected Delivery Date",
+				"error": "Expected Delivery Date is required"
+			},
+			"delivery_status": {
+				"label": "Delivery Status",
+				"placeholder": "Enter Delivery Status",
+				"description": "Enter Delivery Status",
+				"error": "Delivery Status is required"
+			},
+			"meta_tags": {
+				"label": "Meta Tags",
+				"placeholder": "Enter Meta Tags",
+				"description": "Enter Meta Tags",
+				"error": "Meta Tags is required"
+			},
+			"source_system": {
+				"label": "Source System",
+				"placeholder": "Enter Source System",
+				"description": "Enter Source System",
+				"error": "Source System is required"
+			},
+			"recipient_name": {
+				"label": "Recipient Name",
+				"placeholder": "Enter Recipient Name",
+				"description": "Enter Recipient Name",
+				"error": "Recipient Name is required"
+			},
+			"recipient_phone_number": {
+				"label": "Recipient Phone Number",
+				"placeholder": "Enter Recipient Phone Number",
+				"description": "Enter Recipient Phone Number",
+				"error": "Recipient Phone Number is required"
+			},
+			"recipient_email": {
+				"label": "Recipient Email",
+				"placeholder": "Enter Recipient Email",
+				"description": "Enter Recipient Email",
+				"error": "Recipient Email is required"
+			},
+			"job_title": {
+				"label": "Job Title",
+				"placeholder": "Enter Job Title",
+				"description": "Enter Job Title",
+				"error": "Job Title is required"
+			},
+			"department": {
+				"label": "Department",
+				"placeholder": "Enter Department",
+				"description": "Enter Department",
+				"error": "Department is required"
+			},
+			"sector": {
+				"label": "Sector",
+				"placeholder": "Enter Sector",
+				"description": "Enter Sector",
+				"error": "Sector is required"
 			}
 		}
 	}

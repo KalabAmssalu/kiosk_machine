@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
+import ledgerReducer from "./redux/ledgerSlice";
 import loadersReducer from "./redux/loadersSlice";
 import usersReducer from "./redux/usersSlice";
 
@@ -30,6 +31,7 @@ const storage =
 const rootReducer = combineReducers({
 	users: usersReducer,
 	loaders: loadersReducer,
+	ledger: ledgerReducer,
 });
 
 // Persist configuration
