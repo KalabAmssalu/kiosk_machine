@@ -24,6 +24,14 @@
 		"forgotPassword": "Forgot Password?",
 		"login": "Login"
 	},
+	"LandingPage": {
+		"title": "Welcome to the Ministry of Innovation and Technology",
+		"subtitle": "Driving Innovation and Technology in Ethiopia",
+		"description": "The Ministry of Innovation and Technology of Ethiopia is at the forefront of fostering technological advancement and innovation for sustainable development.",
+		"videoTitle": "Explore the Ministry's Vision",
+		"button": "Continue"
+	},
+
 	"LedgerForm": {
 		"carrier_information": "Carrier Information",
 		"DocumentUpload": "Document Upload",
