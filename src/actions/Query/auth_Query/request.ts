@@ -42,7 +42,7 @@ export const useSignIn = () => {
 		"ኢሜልዎን እና የይለፍ ቃልዎን በማረጋገጥ ላይ፣ እባክዎ ይጠብቁ...",
 		{
 			onSuccess: (variables) => {
-				router.push("/dashoard/home" as `/${string}`);
+				router.push("/dashboard/home" as `/${string}`);
 			},
 		}
 	);
