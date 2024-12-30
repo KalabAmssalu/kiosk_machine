@@ -17,6 +17,10 @@ const axiosInstance: AxiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
 	async (config) => {
 		// Handle session authorization
+		if (config.data instanceof FormData) {
+			// Let Axios handle Content-Type for FormData
+			delete config.headers["Content-Type"];
+		}
 		if (
 			!config.url?.includes("auth/login/") &&
 			!config.url?.includes("auth/signup/") &&

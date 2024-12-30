@@ -1,7 +1,7 @@
 import { type UseMutationResult, useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-type APIResponseType = {
+export type APIResponseType = {
 	ok: boolean;
 	message: string;
 	data?: object;

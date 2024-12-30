@@ -1,20 +1,46 @@
 "use server";
 
 import axiosInstance from "@/actions/axiosInstance";
-import { type ledgerType } from "@/types/CarrierType";
+import { type APIResponseType } from "@/hooks/useToastMutation";
 
 import getErrorMessage from "../getErrorMessage";
 
-export async function setLedger(data: ledgerType) {
+// export async function setLedger(data: ledgerType) {
+// 	try {
+// 		const response = await axiosInstance.post("ledgers/incoming/create/", data);
+
+// 		return {
+// 			ok: true,
+// 			message: "አዲስ መዝገብ በተሳካ ሁኔታ ፈጥረዋል!",
+// 			data: response.data,
+// 		};
+// 	} catch (error: any) {
+// 		return { ok: false, message: getErrorMessage(error) };
+// 	}
+// }
+
+export const setLedger = async (
+	formData: FormData
+): Promise<APIResponseType> => {
+	console.log("formData", formData);
 	try {
-		const response = await axiosInstance.post("ledgers/incoming/create/", data);
+		const response = await axiosInstance.post(
+			"ledgers/incoming/create/",
+			formData,
+			{
+				headers: {
+					"Content-Type": "multipart/form-data", // Ensure the correct content type
+				},
+			}
+		);
+		console.log("response", response);
 
 		return {
-			ok: true,
-			message: "አዲስ መዝገብ በተሳካ ሁኔታ ፈጥረዋል!",
-			data: response.data,
+			ok: response.status >= 200 && response.status < 300,
+			message: response.data?.message || "አዲስ መዝገብ በተሳካ ሁኔታ ፈጥረዋል!",
+			data: response.data?.data,
 		};
 	} catch (error: any) {
 		return { ok: false, message: getErrorMessage(error) };
 	}
-}
+};
