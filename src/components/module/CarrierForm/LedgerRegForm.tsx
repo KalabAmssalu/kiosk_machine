@@ -131,25 +131,45 @@ export default function LedgerRegForm() {
 		console.log("metadata uploaded", data);
 	};
 	const { mutate: addLedger } = useAddLedger();
-	const handleSubmit = async () => {
-		setIsSubmitting(true);
-		try {
-			if (!data) {
-				toast.error("No provider data found. Please check your input.");
-				return;
-			}
-			const updatedData = { ...formData, letters, attachments };
-			console.log("data", updatedData);
-			// addLedger(updatedData);
 
-			handleDownloadPDF();
+	const handleSubmit = async (data: ledgerType) => {
+		setIsSubmitting(true);
+		const formData = new FormData();
+
+		// Append all form fields
+		Object.entries(data).forEach(([key, value]) => {
+			if (value !== undefined && value !== null) {
+				if (typeof value === "object" && !(value instanceof File)) {
+					formData.append(key, JSON.stringify(value));
+				} else {
+					formData.append(key, value as string | Blob);
+				}
+			}
+		});
+
+		// Append file arrays
+		const appendFiles = (files: File[], fieldName: string) => {
+			files.forEach((file) => {
+				formData.append(fieldName, file);
+			});
+		};
+
+		appendFiles(letters, "letters");
+		appendFiles(attachments, "attachments");
+		console.log("formData", formData);
+
+		try {
+			addLedger(formData, {
+				onSuccess: () => {
+					handleDownloadPDF();
+				},
+			});
 		} catch (error) {
-			toast.error("Failed to submit provider data. Please try again.");
+			toast.error("Failed to submit ledger data. Please try again.");
 		} finally {
 			setIsSubmitting(false);
 		}
 	};
-
 	const steps = [
 		{
 			title: "Carrier Information",
@@ -276,7 +296,7 @@ export default function LedgerRegForm() {
 						<AlertDialogAction
 							className="bg-green-500"
 							disabled={isSubmitting}
-							onClick={handleSubmit}
+							// onClick={() => handleSubmit(formData)}
 						>
 							{isSubmitting ? (
 								<>
