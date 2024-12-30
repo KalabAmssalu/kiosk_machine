@@ -181,7 +181,7 @@
 				"description": "Enter Delivery Channel",
 				"error": "Delivery Channel is required",
 				"options": {
-					"INPERSON": "THE DOCUMENT SENDER ORGANIZATION  ",
+					"INPERSON": "THE DOCUMENT SENDER ORGANIZATION ",
 					"DELIVERY": "DELIVERY ORGANIZATION"
 				}
 			},
