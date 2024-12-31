@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-// import { useLogout } from "@/actions/Query/auth-Query/auth";
+import { useLogout } from "@/actions/Query/auth_Query/request";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/custom/modeToggle";
 import {
@@ -20,11 +20,11 @@ import { NavigationMenuConf } from "./NavigationMenu";
 
 const MainNav = () => {
 	// 	const t = useTranslations();
-	// const { mutate: logOut } = useLogout();
+	const { mutate: logOut } = useLogout();
 
 	const route = useRouter();
 	const handleLogout = () => {
-		// logOut();
+		logOut();
 	};
 	return (
 		<nav className="bg-blue-500 z-50 w-full">

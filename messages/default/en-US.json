@@ -36,6 +36,7 @@
 		"carrier_information": "Carrier Information",
 		"DocumentUpload": "Document Upload",
 		"DocumentInfo": "Document Information",
+		"sender_info": "Sender Information",
 		"recipient_info": "Recipient Information",
 		"fields": {
 			"carrier_person_first_name": {
@@ -68,8 +69,8 @@
 				"description": "Enter Carrier Type",
 				"error": "Carrier Type is required",
 				"options": {
-					"Individual": "Individual",
-					"Organization": "Organization"
+					"Individual": "INDIVIDUAL",
+					"Organization": "ORGANIZATION"
 				}
 			},
 			"organization_type": {
@@ -100,13 +101,15 @@
 				"label": "Letters",
 				"placeholder": "Enter Letters",
 				"description": "Enter Letters",
-				"error": "Letters is required"
+				"error": "Letters is required",
+				"fileTypeError": "Invalid file type. Please upload a valid file."
 			},
 			"attachments": {
 				"label": "Attachments",
 				"placeholder": "Enter Attachments",
 				"description": "Enter Attachments",
-				"error": "Attachments is required"
+				"error": "Attachments is required",
+				"fileTypeError": "Invalid file type. Please upload a valid file."
 			},
 			"additional_message": {
 				"label": "Additional Message",
@@ -221,6 +224,41 @@
 				"description": "Enter Source System",
 				"error": "Source System is required"
 			},
+			"sender_name": {
+				"label": "Sender Name",
+				"placeholder": "Enter Sender Name",
+				"description": "Enter Sender Name",
+				"error": "Sender Name is required"
+			},
+			"sender_phone_number": {
+				"label": "Sender Phone Number",
+				"placeholder": "Enter Sender Phone Number",
+				"description": "Enter Sender Phone Number",
+				"error": "Sender Phone Number is required"
+			},
+			"sender_email": {
+				"label": "Sender Email",
+				"placeholder": "Enter Sender Email",
+				"description": "Enter Sender Email",
+				"error": "Sender Email is required"
+			},
+			"sender_address": {
+				"label": "Sender Address",
+				"placeholder": "Enter Sender Address",
+				"description": "Enter Sender Address",
+				"error": "Sender Address is required"
+			},
+			"sender_type": {
+				"label": "Sender Type",
+				"placeholder": "Select Sender Type",
+				"description": "Choose whether the sender is an Individual or an Organization",
+				"error": "Sender Type is required",
+				"options": {
+					"INDIVIDUAL": "INDIVIDUAL",
+					"ORGANIZATION": "ORGANIZATION"
+				}
+			},
+
 			"recipient_name": {
 				"label": "Recipient Name",
 				"placeholder": "Enter Recipient Name",

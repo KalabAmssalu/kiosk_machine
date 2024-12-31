@@ -22,6 +22,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAppDispatch, useAppSelector } from "@/hooks/storehooks";
+import { SetLedgers } from "@/lib/store/redux/ledgerSlice";
 import { type ledgerType } from "@/types/CarrierType";
 
 import DocumentInfoForm from "./DocumentInfoForm";
@@ -31,12 +32,14 @@ import DocumentMetadataForm, {
 import DocumentUploadForm from "./DocumentUplaodForm";
 import CarrierInfoForm from "./InfoForm";
 import RecipientInfoForm from "./RecipientInfoForm";
+import SenderInfoForm from "./SenderInfoForm";
+import Preview from "./preview";
 
 export default function LedgerRegForm() {
 	const [nextActive, setNextActive] = useState(false);
 	const [currentStep, setCurrentStep] = useState(0);
 
-	const data = useAppSelector((state) => state.ledger.ledgers);
+	// const data = useAppSelector((state) => state.ledger.ledgers);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const printRef = useRef<HTMLDivElement>(null);
 	const [letters, setLetters] = useState<File[]>([]);
@@ -46,7 +49,7 @@ export default function LedgerRegForm() {
 		carrier_person_middle_name: "",
 		carrier_person_last_name: "",
 		carrier_phone_number: "",
-		carrier_type: "Individual",
+		carrier_type: "INDIVIDUAL",
 		carrier_organization_id: "",
 		carrier_plate_number: "",
 
@@ -55,26 +58,32 @@ export default function LedgerRegForm() {
 		delivery_organization: "",
 		tracking_number: "",
 		expected_delivery_date: "",
-		delivery_status: "Pending",
+		delivery_status: "PENDING",
 
 		additional_message: "",
 		document_type: "Letter",
 		document_date: "",
 		document_owner: "",
 
-		metaData_title: "",
-		metaData_description: "",
-		metaData_author: "",
-		metaData_dateCreated: "",
-		metaData_lastModified: "",
-		metaData_version: "",
-		metaData_keywords: "",
-		metaData_tags: "",
-		metaData_category: "",
-		metaData_fileType: "",
-		metaData_language: "",
-		metaData_status: "Draft",
-		metaData_confidentiality: "Public",
+		metadata_title: "",
+		metadata_description: "",
+		metadata_author: "",
+		metadata_dateCreated: "",
+		metadata_lastModified: "",
+		metadata_version: "",
+		metadata_keywords: "",
+		metadata_tags: "",
+		metadata_category: "",
+		metadata_fileType: "",
+		metadata_language: "",
+		metadata_status: "DRAFT",
+		metadata_confidentiality: "PUBLIC",
+
+		sender_name: "",
+		sender_phone_number: "",
+		sender_email: "",
+		sender_address: " ",
+		sender_type: "INDIVIDUAL",
 
 		recipient_name: "",
 		recipient_phone_number: "",
@@ -96,9 +105,13 @@ export default function LedgerRegForm() {
 	const dispatch = useAppDispatch();
 
 	const updateFormData = (newData: Partial<ledgerType>) => {
-		const updatedData = { ...formData, ...newData };
+		const updatedData = {
+			...formData,
+			...newData,
+		};
+
 		setFormData(updatedData);
-		// dispatch(SetLedgers(updatedData));
+		dispatch(SetLedgers([updatedData]));
 		setNextActive(true);
 	};
 
@@ -139,10 +152,31 @@ export default function LedgerRegForm() {
 		// Append all form fields
 		Object.entries(data).forEach(([key, value]) => {
 			if (value !== undefined && value !== null) {
+				// if (typeof value === "object" && !(value instanceof File)) {
+				// 	formData.append(key, JSON.stringify(value));
+				// } else {
+				// 	formData.append(key, value as string | Blob);
+				// }
+				const cleanedKey = key.startsWith("1_") ? key.substring(2) : key;
+
+				if (
+					[
+						"carrier_phone_number",
+						"sender_phone_number",
+						"recipient_phone_number",
+					].includes(cleanedKey)
+				) {
+					// Remove '+' symbol if the value is not empty
+					value =
+						typeof value === "string" && value.trim() !== ""
+							? value.replace(/\+/g, "")
+							: value;
+				}
+
 				if (typeof value === "object" && !(value instanceof File)) {
-					formData.append(key, JSON.stringify(value));
+					formData.append(cleanedKey, JSON.stringify(value));
 				} else {
-					formData.append(key, value as string | Blob);
+					formData.append(cleanedKey, value as string | Blob);
 				}
 			}
 		});
@@ -156,7 +190,6 @@ export default function LedgerRegForm() {
 
 		appendFiles(letters, "letters");
 		appendFiles(attachments, "attachments");
-		console.log("formData", formData);
 
 		try {
 			addLedger(formData, {
@@ -186,6 +219,18 @@ export default function LedgerRegForm() {
 			title: "Document Information",
 			content: (
 				<DocumentInfoForm
+					onFormComplete={(data) => {
+						updateFormData(data);
+						nextStep();
+					}}
+				/>
+			),
+		},
+
+		{
+			title: "Sender Information",
+			content: (
+				<SenderInfoForm
 					onFormComplete={(data) => {
 						updateFormData(data);
 						nextStep();
@@ -226,16 +271,18 @@ export default function LedgerRegForm() {
 				/>
 			),
 		},
-		// {
-		// 	title: "Preview",
-		// 	content: (
-		// 		<Preview
-		// 			type="ledger"
-		// 			onConfirm={handleConfirm}
-		// 			ref={printRef}
-		// 		/>
-		// 	),
-		// },
+		{
+			title: "Preview",
+			content: (
+				<Preview
+					type="ledger"
+					onConfirm={handleConfirm}
+					ref={printRef}
+					letters={[]}
+					attachments={[]}
+				/>
+			),
+		},
 	];
 
 	const nextStep = () => {
@@ -296,7 +343,7 @@ export default function LedgerRegForm() {
 						<AlertDialogAction
 							className="bg-green-500"
 							disabled={isSubmitting}
-							// onClick={() => handleSubmit(formData)}
+							onClick={() => handleSubmit(formData)}
 						>
 							{isSubmitting ? (
 								<>

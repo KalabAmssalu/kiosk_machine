@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { forwardRef, useMemo } from "react";
+import { forwardRef, useMemo, useState } from "react";
 
 import Field from "@/components/shared/field/Field";
 import { Button } from "@/components/ui/button";
@@ -13,13 +13,17 @@ interface PersonalInfoProps {
 	letters: File[];
 	attachments: File[];
 	ref: React.RefObject<HTMLDivElement>;
+	type?: string; // Add the 'type' property
 }
 
 // eslint-disable-next-line react/display-name
 const Preview = forwardRef<HTMLDivElement, PersonalInfoProps>(
-	({ onConfirm, letters, attachments }, ref) => {
+	({ onConfirm, letters, attachments, type }, ref) => {
 		const data = useAppSelector((state) => state.ledger.ledgers[0]);
-
+		const [currentPage, setCurrentPage] = useState(0); // Track current page
+		console.log("letters, attachments,", letters, attachments);
+		console.log("data", data);
+		console.log(type);
 		const displayedData = useMemo(() => {
 			if (!data) return null;
 
@@ -27,26 +31,123 @@ const Preview = forwardRef<HTMLDivElement, PersonalInfoProps>(
 		}, [data]);
 
 		const handlemodal = () => {
-			// onIsOpenChange(true);
 			onConfirm();
+		};
+
+		// Helper to split content into pages
+		const paginateContent = (content: React.JSX.Element[]) => {
+			const itemsPerPage = 10; // Customize based on your layout
+			const pages = [];
+
+			for (let i = 0; i < content.length; i += itemsPerPage) {
+				pages.push(content.slice(i, i + itemsPerPage));
+			}
+
+			return pages;
+		};
+
+		const contentSections = displayedData
+			? [
+					[
+						"carrier_type",
+						"carrier_organization_id",
+						"carrier_plate_number",
+						"carrier_phone_number",
+					].map((key) => (
+						<Field
+							key={key}
+							label={key}
+							value={String(
+								displayedData[key as keyof typeof displayedData] || ""
+							)}
+							local="LedgerForm.fields"
+						/>
+					)),
+					[
+						"sender_name",
+						"sender_phone_number",
+						"sender_email",
+						"sender_address",
+						"sender_type",
+					].map((key) => (
+						<Field
+							key={key}
+							label={key}
+							value={String(
+								displayedData[key as keyof typeof displayedData] || ""
+							)}
+							local="LedgerForm.fields"
+						/>
+					)),
+					[
+						"delivery_medium",
+						"delivery_channel",
+						"delivery_organization",
+						"tracking_number",
+						"expected_delivery_date",
+						"delivery_status",
+						"additional_message",
+					].map((key) => (
+						<Field
+							key={key}
+							label={key}
+							value={String(
+								displayedData[key as keyof typeof displayedData] || ""
+							)}
+							local="OrganizationInfoForm.fields"
+						/>
+					)),
+					[
+						"document_type",
+						"document_date",
+						"document_owner",
+						"external_reference_id",
+						"metadata",
+						"meta_tags",
+						"version",
+						"source_system",
+						"recipient_name",
+						"recipient_phone_number",
+						"job_title",
+						"department",
+					].map((key) => (
+						<Field
+							key={key}
+							label={key}
+							value={String(
+								displayedData[key as keyof typeof displayedData] || ""
+							)}
+							local="OrganizationInfoForm.fields"
+						/>
+					)),
+				]
+			: [];
+
+		const paginatedContent = paginateContent(contentSections.flat());
+
+		const handleNext = () => {
+			if (currentPage < paginatedContent.length - 1) {
+				setCurrentPage(currentPage + 1);
+			}
+		};
+
+		const handlePrevious = () => {
+			if (currentPage > 0) {
+				setCurrentPage(currentPage - 1);
+			}
 		};
 
 		return (
 			<>
-				<div className="min-h-screen bg-gray-100 p-8 flex justify-center">
-					{/* A4 size container */}
+				<div className="min-h-screen bg-gray-100 p-8 flex flex-col items-center">
 					<div
-						className="bg-white w-[210mm] h-[297mm] shadow-lg p-12 relative"
+						className="bg-white w-[210mm] h-[297mm] shadow-lg p-12 mb-8 relative"
 						ref={ref}
 					>
 						<div className="border-b pb-6 mb-6">
 							<h1 className="text-3xl font-bold text-gray-900">
 								Document Submission Information Preview
 							</h1>
-							<h2 className="text-md font-semibold text-gray-700 mt-2">
-								{/* {`${data.carrier_person_first_name || ""} ${data.carrier_person_middle_name || ""} ${data.carrier_person_last_name || ""}`} */}
-							</h2>
-
 							<div className="text-sm text-gray-500 mt-2">
 								Document generated on {new Date().toLocaleDateString()}
 							</div>
@@ -59,109 +160,40 @@ const Preview = forwardRef<HTMLDivElement, PersonalInfoProps>(
 							className="absolute top-12 right-12"
 						/>
 
-						{/* Content Grid */}
-						{displayedData ? (
-							<div className="grid grid-cols-2 gap-x-6 gap-y-6 text-sm">
-								<div>
-									<h2 className="text-lg font-semibold text-gray-900 mb-4">
-										Carrier Information
-									</h2>
-									<div className="space-y-3">
-										{[
-											"carrier_type",
-											"carrier_organization_id",
-											"carrier_plate_number",
-											"carrier_phone_number",
-										].map((key) => (
-											<Field
-												key={key}
-												label={key}
-												value={String(
-													displayedData[key as keyof typeof displayedData] || ""
-												)}
-												local="LedgerForm.fields"
-											/>
-										))}
-									</div>
-								</div>
-
-								<div>
-									<h2 className="text-lg font-semibold text-gray-900 mb-4">
-										Delivery Information
-									</h2>
-									<div className="space-y-3">
-										{[
-											"delivery_medium",
-											"delivery_channel",
-											"delivery_organization",
-											"tracking_number",
-											"expected_delivery_date",
-											"delivery_status",
-											"additional_message",
-										].map((key) => (
-											<Field
-												key={key}
-												label={key}
-												value={String(
-													displayedData[key as keyof typeof displayedData] || ""
-												)}
-												local="OrganizationInfoForm.fields"
-											/>
-										))}
-									</div>
-								</div>
-								{/* Representative Information Section */}
-
-								<div>
-									<h2 className="text-lg font-semibold text-gray-900 mb-4">
-										Document Information
-									</h2>
-									<div className="space-y-3">
-										{[
-											"document_type",
-											"document_date",
-											"document_owner",
-											"additional_message",
-											"external_reference_id",
-											"metadata",
-											"meta_tags",
-											"version",
-											"source_system",
-											"recipient_name",
-											"recipient_phone_number",
-											"job_title",
-											"department",
-											"tracking_number",
-											"expected_delivery_date",
-											"delivery_status",
-											"additional_message",
-										].map((key) => (
-											<Field
-												key={key}
-												label={key}
-												value={String(
-													displayedData[key as keyof typeof displayedData] || ""
-												)}
-												local="OrganizationInfoForm.fields"
-											/>
-										))}
-									</div>
-								</div>
-							</div>
-						) : (
-							<p>No data available to preview.</p>
-						)}
+						{/* Content Section */}
+						<div className="grid grid-cols-2 gap-x-6 gap-y-6 text-sm">
+							{paginatedContent[currentPage]}
+						</div>
 
 						{/* Footer */}
 						<div className="absolute bottom-8 left-12 right-12 text-xs text-gray-400 border-t pt-4">
-							<div className="flex justify-between">
-								<span>Generated by Tilla Health Insurance Provider System</span>
-								<span>Page 1 of 1</span>
+							<div className="flex items-center justify-between">
+								<span className="text-sm font-light">Generated by MINT</span>
+								<div className="flex items-center gap-4">
+									<Button
+										onClick={handlePrevious}
+										disabled={currentPage === 0}
+										className="bg-gray-300 hover:bg-gray-400 text-black px-3 py-2 rounded-full shadow-md"
+									>
+										&lt;
+									</Button>
+									<span className="text-sm text-gray-600">
+										Page {currentPage + 1} of {paginatedContent.length}
+									</span>
+									<Button
+										onClick={handleNext}
+										disabled={currentPage === paginatedContent.length - 1}
+										className="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full shadow-md"
+									>
+										&gt;
+									</Button>
+								</div>
 							</div>
 						</div>
 					</div>
+
 					{/* Submit Button */}
-					<div className="absolute bottom-20 right-12">
+					<div className="mt-8">
 						<Button
 							onClick={handlemodal}
 							className="bg-green-500 hover:bg-green-600 text-white"

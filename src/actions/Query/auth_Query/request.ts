@@ -42,7 +42,13 @@ export const useSignIn = () => {
 		"ኢሜልዎን እና የይለፍ ቃልዎን በማረጋገጥ ላይ፣ እባክዎ ይጠብቁ...",
 		{
 			onSuccess: (variables) => {
+				toast.success("logged in successfully");
 				router.push("/dashboard/home" as `/${string}`);
+			},
+			onError: (errorMessage: string) => {
+				console.log("errorMessage: ", errorMessage);
+				toast.dismiss();
+				toast.error(errorMessage);
 			},
 		}
 	);

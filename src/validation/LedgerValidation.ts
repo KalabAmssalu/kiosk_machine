@@ -35,7 +35,7 @@ export const createCarrierInfoSchema = (t: (key: string) => string) =>
 			invalid_type_error: t("fields.organization_type.error"),
 		}),
 
-		carrier_type: z.enum(["Individual", "Organization"], {
+		carrier_type: z.enum(["INDIVIDUAL", "ORGANIZATION"], {
 			invalid_type_error: t("fields.carrier_type.error"),
 		}),
 
@@ -106,6 +106,35 @@ export const createDocumentSchema = (t: (key: string) => string) =>
 
 export type DocumentFormValues = z.infer<
 	ReturnType<typeof createDocumentSchema>
+>;
+
+export const createSenderInfoSchema = (t: (key: string) => string) =>
+	z.object({
+		sender_name: z.union([
+			z.literal(""),
+			z.string().min(2, { message: t("fields.sender_name.error") }),
+		]),
+		sender_phone_number: z.union([
+			z.literal(""),
+			z.string().refine((val) => RPNInput.isValidPhoneNumber(val), {
+				message: t("fields.sender_phone_number.error"),
+			}),
+		]),
+		sender_email: z.union([
+			z.literal(""),
+			z.string().email({ message: t("fields.sender_email.error") }),
+		]),
+		sender_address: z.union([
+			z.literal(""),
+			z.string().min(5, { message: t("fields.sender_address.error") }),
+		]),
+		sender_type: z.enum(["INDIVIDUAL", "ORGANIZATION"], {
+			errorMap: () => ({ message: t("fields.sender_type.error") }),
+		}),
+	});
+
+export type SenderInfoFormValues = z.infer<
+	ReturnType<typeof createSenderInfoSchema>
 >;
 
 export const createRecipientInfoSchema = (t: (key: string) => string) =>

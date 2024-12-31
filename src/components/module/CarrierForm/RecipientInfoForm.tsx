@@ -6,8 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
+import { useFetchDepartments } from "@/actions/Query/organization_query/departmentQuery";
+import { useFetchJobtitles } from "@/actions/Query/organization_query/jobTitleQuery";
 import ReusableFormField from "@/components/shared/Form/ReusableFormField";
 import ReusablePhoneInputField from "@/components/shared/Form/ReusablePhoneInput";
+import ReusableSelectField from "@/components/shared/Form/ReusableSelectField";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import {
@@ -25,6 +28,13 @@ export default function RecipientInfoForm({
 	const [visible, setVisible] = useState(true);
 	const t = useTranslations("LedgerForm");
 	const contactPersonSchema = createRecipientInfoSchema(t);
+
+	// React Query hooks for departments and job titles
+	const { data: departments, isSuccess: departmentsLoaded } =
+		useFetchDepartments();
+	const { data: jobTitles, isSuccess: jobTitlesLoaded } = useFetchJobtitles();
+
+	// Form setup
 	const form = useForm<RecipientInfoFormValues>({
 		resolver: zodResolver(contactPersonSchema),
 		defaultValues: {
@@ -36,11 +46,30 @@ export default function RecipientInfoForm({
 		},
 	});
 
+	// Submit handler
 	function onSubmit(data: RecipientInfoFormValues) {
 		onFormComplete(data);
 		setVisible(false);
 		console.log("data to submit", data);
 	}
+
+	// Transform data for dropdown options
+	const departmentOptions =
+		departmentsLoaded && departments
+			? departments.map((dept) => ({
+					label: dept.department_name_en,
+					value: dept.id,
+				}))
+			: [];
+
+	const jobTitleOptions =
+		jobTitlesLoaded && jobTitles
+			? jobTitles.map((job) => ({
+					label: job.title_en,
+					value: job.id, // Ensure this is unique
+				}))
+			: [];
+	// console.log("Job title options:", jobTitleOptions);
 
 	return (
 		<Form {...form}>
@@ -67,24 +96,35 @@ export default function RecipientInfoForm({
 							descriptionKey="fields.recipient_phone_number.description"
 							local="LedgerForm"
 						/>
-						<ReusableFormField
+						<ReusableSelectField
 							control={form.control}
 							name="job_title"
-							type="text"
+							options={jobTitleOptions}
 							local="LedgerForm"
 							labelKey="fields.job_title.label"
 							placeholderKey="fields.job_title.placeholder"
 							descriptionKey="fields.job_title.description"
+							onValueChange={(value) => {
+								form.setValue("job_title", value); // Update the form value
+								console.log("Selected job title value:", value);
+							}}
+							required
 						/>
-						<ReusableFormField
+
+						<ReusableSelectField
 							control={form.control}
 							name="department"
-							type="text"
+							options={departmentOptions}
 							local="LedgerForm"
 							labelKey="fields.department.label"
 							placeholderKey="fields.department.placeholder"
 							descriptionKey="fields.department.description"
+							onValueChange={(value) => {
+								form.setValue("department", value); // Update the form value
+							}}
+							required
 						/>
+
 						<ReusableFormField
 							control={form.control}
 							name="sector"

@@ -28,65 +28,65 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 export interface MetaDataType {
-	metaData_title?: string; // optional, min 1, max 100 characters
-	metaData_description?: string; // optional, max 500 characters
-	metaData_author?: string; // optional, min 1 character
-	metaData_dateCreated?: string; // optional, min 1 character
-	metaData_lastModified?: string; // optional, min 1 character
-	metaData_version?: string; // optional, min 1 character
-	metaData_keywords?: string; // optional, min 1 character
-	metaData_tags?: string; // optional, min 1 character
-	metaData_category?: string; // optional, min 1 character
-	metaData_fileType?: string; // optional, min 1 character
-	metaData_language?: string; // optional, min 1 character
-	metaData_status?:
+	metadata_title?: string; // optional, min 1, max 100 characters
+	metadata_description?: string; // optional, max 500 characters
+	metadata_author?: string; // optional, min 1 character
+	metadata_dateCreated?: string; // optional, min 1 character
+	metadata_lastModified?: string; // optional, min 1 character
+	metadata_version?: string; // optional, min 1 character
+	metadata_keywords?: string; // optional, min 1 character
+	metadata_tags?: string; // optional, min 1 character
+	metadata_category?: string; // optional, min 1 character
+	metadata_fileType?: string; // optional, min 1 character
+	metadata_language?: string; // optional, min 1 character
+	metadata_status?:
 		| "Draft"
 		| "In Review"
 		| "Approved"
 		| "Published"
 		| "Archived"; // optional enum
-	metaData_confidentiality?:
+	metadata_confidentiality?:
 		| "Public"
 		| "Internal"
 		| "Confidential"
 		| "Restricted"; // optional enum
-	metaData_source_system?: string;
+	metadata_source_system?: string;
 }
 const documentMetadataSchema = z.object({
-	metaData_title: z
+	metadata_title: z
 		.string()
 		.min(1, "Title is required")
 		.max(100, "Title should be at most 100 characters")
 		.optional(),
-	metaData_description: z
+	metadata_description: z
 		.string()
 		.max(500, "Description should be at most 500 characters")
 		.optional(),
-	metaData_author: z.string().min(1, "Author is required").optional(),
-	metaData_dateCreated: z
+	metadata_author: z.string().min(1, "Author is required").optional(),
+	metadata_dateCreated: z
 		.string()
 		.min(1, "Date created is required")
 		.optional(),
-	metaData_lastModified: z
+	metadata_lastModified: z
 		.string()
 		.min(1, "Last modified date is required")
 		.optional(),
-	metaData_version: z.string().min(1, "Version is required").optional(),
-	metaData_keywords: z
+	metadata_version: z.string().min(1, "Version is required").optional(),
+	metadata_keywords: z
 		.string()
 		.min(1, "At least one keyword is required")
 		.optional(),
-	metaData_tags: z.string().min(1, "At least one tag is required").optional(),
-	metaData_category: z.string().min(1, "Category is required").optional(),
-	metaData_fileType: z.string().min(1, "File type is required").optional(),
-	metaData_language: z.string().min(1, "Language is required").optional(),
-	metaData_status: z
+	metadata_tags: z.string().min(1, "At least one tag is required").optional(),
+	metadata_category: z.string().min(1, "Category is required").optional(),
+	metadata_fileType: z.string().min(1, "File type is required").optional(),
+	metadata_language: z.string().min(1, "Language is required").optional(),
+	metadata_status: z
 		.enum(["Draft", "In Review", "Approved", "Published", "Archived"])
 		.optional(),
-	metaData_confidentiality: z
+	metadata_confidentiality: z
 		.enum(["Public", "Internal", "Confidential", "Restricted"])
 		.optional(),
-	metaData_source_system: z
+	metadata_source_system: z
 		.string()
 		.min(1, "Source system is required")
 		.optional(),
@@ -108,20 +108,20 @@ export default function DocumentMetadataForm({
 	const form = useForm<DocumentMetadataFormValues>({
 		resolver: zodResolver(documentMetadataSchema),
 		defaultValues: {
-			metaData_title: "",
-			metaData_description: "",
-			metaData_author: "",
-			metaData_dateCreated: new Date().toISOString().split("T")[0],
-			metaData_lastModified: new Date().toISOString().split("T")[0],
-			metaData_version: "1.0",
-			metaData_keywords: "",
-			metaData_tags: "",
-			metaData_category: "",
-			metaData_fileType: "",
-			metaData_language: "English",
-			metaData_status: "Draft",
-			metaData_confidentiality: "Internal",
-			metaData_source_system: "",
+			metadata_title: "",
+			metadata_description: "",
+			metadata_author: "",
+			metadata_dateCreated: new Date().toISOString().split("T")[0],
+			metadata_lastModified: new Date().toISOString().split("T")[0],
+			metadata_version: "1.0",
+			metadata_keywords: "",
+			metadata_tags: "",
+			metadata_category: "",
+			metadata_fileType: "",
+			metadata_language: "English",
+			metadata_status: "Draft",
+			metadata_confidentiality: "Internal",
+			metadata_source_system: "",
 		},
 	});
 
@@ -152,7 +152,7 @@ export default function DocumentMetadataForm({
 							>
 								<FormField
 									control={form.control}
-									name="metaData_title"
+									name="metadata_title"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Title</FormLabel>
@@ -165,7 +165,7 @@ export default function DocumentMetadataForm({
 								/>
 								<FormField
 									control={form.control}
-									name="metaData_description"
+									name="metadata_description"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Description</FormLabel>
@@ -181,7 +181,7 @@ export default function DocumentMetadataForm({
 								/>
 								<FormField
 									control={form.control}
-									name="metaData_author"
+									name="metadata_author"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Author</FormLabel>
@@ -195,7 +195,7 @@ export default function DocumentMetadataForm({
 								<div className="grid grid-cols-2 gap-4">
 									<FormField
 										control={form.control}
-										name="metaData_dateCreated"
+										name="metadata_dateCreated"
 										render={({ field }) => (
 											<FormItem>
 												<FormLabel>Date Created</FormLabel>
@@ -208,7 +208,7 @@ export default function DocumentMetadataForm({
 									/>
 									<FormField
 										control={form.control}
-										name="metaData_lastModified"
+										name="metadata_lastModified"
 										render={({ field }) => (
 											<FormItem>
 												<FormLabel>Last Modified</FormLabel>
@@ -222,7 +222,7 @@ export default function DocumentMetadataForm({
 								</div>
 								<FormField
 									control={form.control}
-									name="metaData_version"
+									name="metadata_version"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Version</FormLabel>
@@ -238,7 +238,7 @@ export default function DocumentMetadataForm({
 								/>
 								<FormField
 									control={form.control}
-									name="metaData_keywords"
+									name="metadata_keywords"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Keywords</FormLabel>
@@ -257,7 +257,7 @@ export default function DocumentMetadataForm({
 								/>
 								<FormField
 									control={form.control}
-									name="metaData_tags"
+									name="metadata_tags"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Tags</FormLabel>
@@ -276,7 +276,7 @@ export default function DocumentMetadataForm({
 								/>
 								<FormField
 									control={form.control}
-									name="metaData_category"
+									name="metadata_category"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Category</FormLabel>
@@ -292,7 +292,7 @@ export default function DocumentMetadataForm({
 								/>
 								<FormField
 									control={form.control}
-									name="metaData_fileType"
+									name="metadata_fileType"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>File Type</FormLabel>
@@ -308,7 +308,7 @@ export default function DocumentMetadataForm({
 								/>
 								<FormField
 									control={form.control}
-									name="metaData_language"
+									name="metadata_language"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Language</FormLabel>
@@ -324,7 +324,7 @@ export default function DocumentMetadataForm({
 								/>
 								<FormField
 									control={form.control}
-									name="metaData_status"
+									name="metadata_status"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Status</FormLabel>
@@ -346,7 +346,7 @@ export default function DocumentMetadataForm({
 								/>
 								<FormField
 									control={form.control}
-									name="metaData_confidentiality"
+									name="metadata_confidentiality"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Confidentiality</FormLabel>
@@ -367,7 +367,7 @@ export default function DocumentMetadataForm({
 								/>
 								<FormField
 									control={form.control}
-									name="metaData_source_system"
+									name="metadata_source_system"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Source System</FormLabel>
@@ -398,42 +398,42 @@ export default function DocumentMetadataForm({
 							<div className="space-y-4">
 								<div>
 									<h2 className="text-xl font-semibold">
-										{preview.metaData_title}
+										{preview.metadata_title}
 									</h2>
 									<p className="text-sm text-gray-500">
-										Version {preview.metaData_version}
+										Version {preview.metadata_version}
 									</p>
-									<p className="text-sm">{preview.metaData_description}</p>
+									<p className="text-sm">{preview.metadata_description}</p>
 								</div>
 								<div className="flex flex-wrap gap-2">
-									<Badge variant="secondary">{preview.metaData_status}</Badge>
+									<Badge variant="secondary">{preview.metadata_status}</Badge>
 									<Badge variant="outline">
-										{preview.metaData_confidentiality}
+										{preview.metadata_confidentiality}
 									</Badge>
-									<Badge>{preview.metaData_fileType}</Badge>
+									<Badge>{preview.metadata_fileType}</Badge>
 								</div>
 								<div>
 									<p>
-										<strong>Author:</strong> {preview.metaData_author}
+										<strong>Author:</strong> {preview.metadata_author}
 									</p>
 									<p>
-										<strong>Created:</strong> {preview.metaData_dateCreated}
+										<strong>Created:</strong> {preview.metadata_dateCreated}
 									</p>
 									<p>
 										<strong>Last Modified:</strong>{" "}
-										{preview.metaData_lastModified}
+										{preview.metadata_lastModified}
 									</p>
 									<p>
-										<strong>Category:</strong> {preview.metaData_category}
+										<strong>Category:</strong> {preview.metadata_category}
 									</p>
 									<p>
-										<strong>Language:</strong> {preview.metaData_language}
+										<strong>Language:</strong> {preview.metadata_language}
 									</p>
 								</div>
 								<div>
 									<p>
 										<strong>Keywords:</strong>{" "}
-										{preview.metaData_keywords
+										{preview.metadata_keywords
 											?.split(",")
 											.map((keyword) => keyword.trim())
 											.join(", ") || ""}
@@ -444,7 +444,7 @@ export default function DocumentMetadataForm({
 										<strong> Tags:</strong>
 									</p>
 									<div className="flex flex-wrap gap-2 mt-1">
-										{preview.metaData_tags?.split(",").map((tag, index) => (
+										{preview.metadata_tags?.split(",").map((tag, index) => (
 											<Badge key={index} variant="secondary">
 												{tag.trim()}
 											</Badge>

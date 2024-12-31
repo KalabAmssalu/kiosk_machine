@@ -21,29 +21,29 @@ interface DocumentType {
 }
 
 interface MetaDataType {
-	metaData_title?: string; // optional, min 1, max 100 characters
-	metaData_description?: string; // optional, max 500 characters
-	metaData_author?: string; // optional, min 1 character
-	metaData_dateCreated?: string; // optional, min 1 character
-	metaData_lastModified?: string; // optional, min 1 character
-	metaData_version?: string; // optional, min 1 character
-	metaData_keywords?: string; // optional, min 1 character
-	metaData_tags?: string; // optional, min 1 character
-	metaData_category?: string; // optional, min 1 character
-	metaData_fileType?: string; // optional, min 1 character
-	metaData_language?: string; // optional, min 1 character
-	metaData_status?:
+	metadata_title?: string; // optional, min 1, max 100 characters
+	metadata_description?: string; // optional, max 500 characters
+	metadata_author?: string; // optional, min 1 character
+	metadata_dateCreated?: string; // optional, min 1 character
+	metadata_lastModified?: string; // optional, min 1 character
+	metadata_version?: string; // optional, min 1 character
+	metadata_keywords?: string; // optional, min 1 character
+	metadata_tags?: string; // optional, min 1 character
+	metadata_category?: string; // optional, min 1 character
+	metadata_fileType?: string; // optional, min 1 character
+	metadata_language?: string; // optional, min 1 character
+	metadata_status?:
 		| "Draft"
 		| "In Review"
 		| "Approved"
 		| "Published"
 		| "Archived"; // optional enum
-	metaData_confidentiality?:
+	metadata_confidentiality?:
 		| "Public"
 		| "Internal"
 		| "Confidential"
 		| "Restricted"; // optional enum
-	metaData_source_system?: string;
+	metadata_source_system?: string;
 }
 
 interface Delivery_infoType {
@@ -84,7 +84,7 @@ export interface ledgerType {
 
 // Define the initial state for the ledger slice
 const initialState = {
-	ledgers: [] as ledgerType[], // Array to hold the ledgers
+	ledgers: [] as Partial<ledgerType>[], // Array to hold the ledgers
 };
 
 // Create the ledger slice
@@ -93,7 +93,10 @@ const ledgerSlice = createSlice({
 	initialState,
 	reducers: {
 		// Action to set the ledgers array
-		SetLedgers: (state, action: PayloadAction<ledgerType[]>) => {
+		// SetLedgers: (state, action: PayloadAction<ledgerType[]>) => {
+		// 	state.ledgers = action.payload;
+		// },
+		SetLedgers: (state, action: PayloadAction<Partial<ledgerType>[]>) => {
 			state.ledgers = action.payload;
 		},
 		// Action to add a new ledger

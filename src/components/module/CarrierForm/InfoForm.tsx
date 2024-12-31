@@ -35,7 +35,7 @@ export default function CarrierInfoForm({
 			carrier_person_middle_name: "",
 			carrier_person_last_name: "",
 			carrier_phone_number: "",
-			carrier_type: "Individual",
+			carrier_type: "INDIVIDUAL",
 			carrier_organization_id: "",
 			carrier_plate_number: "",
 			organization_type: "private",
@@ -137,17 +137,17 @@ export default function CarrierInfoForm({
 							options={[
 								{
 									label: t("fields.carrier_type.options.Individual"),
-									value: "Individual",
+									value: "INDIVIDUAL",
 								},
 								{
 									label: t("fields.carrier_type.options.Organization"),
-									value: "Organization",
+									value: "ORGANIZATION",
 								},
 							]}
 							onValueChange={(value) => {
 								form.setValue(
 									"carrier_type",
-									value as "Individual" | "Organization"
+									value as "INDIVIDUAL" | "ORGANIZATION"
 								);
 							}}
 							required
