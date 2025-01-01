@@ -91,10 +91,10 @@ export default function LedgerRegForm() {
 		department: "",
 		sector: "",
 
-		status: "Pending",
+		status: "PENDING",
 		reference_number: "",
 		external_reference_id: "",
-		priority: "Low",
+		priority: "LOW",
 		received_at: "",
 		approved_by: "",
 		approved_at: "",

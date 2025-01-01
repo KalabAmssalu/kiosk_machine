@@ -6,7 +6,7 @@ interface CarrierType {
 	carrier_person_middle_name: string;
 	carrier_person_last_name: string;
 	carrier_phone_number: string;
-	carrier_type?: "Individual" | "Organization";
+	carrier_type?: "INDIVIDUAL" | "ORGANIZATION";
 	carrier_organization_id?: string;
 	carrier_plate_number?: string;
 }
@@ -33,16 +33,16 @@ interface MetaDataType {
 	metadata_fileType?: string; // optional, min 1 character
 	metadata_language?: string; // optional, min 1 character
 	metadata_status?:
-		| "Draft"
-		| "In Review"
-		| "Approved"
-		| "Published"
-		| "Archived"; // optional enum
+		| "DRAFT"
+		| "IN_REVIEW"
+		| "APPROVED"
+		| "PUBLISHED"
+		| "ARCHIVED"; // optional enum
 	metadata_confidentiality?:
-		| "Public"
-		| "Internal"
-		| "Confidential"
-		| "Restricted"; // optional enum
+		| "PUBLIC"
+		| "INTERNAL"
+		| "CONFIDENTIAL"
+		| "RESTRICTED"; // optional enum
 	metadata_source_system?: string;
 }
 
@@ -52,7 +52,7 @@ interface Delivery_infoType {
 	delivery_organization: string;
 	tracking_number?: string;
 	expected_delivery_date?: string;
-	delivery_status?: "Pending" | "Shipped" | "Delivered";
+	delivery_status?: "PENDING" | "SHIPPED" | "DELIVERED";
 }
 
 interface Recipient_infoType {
@@ -73,10 +73,10 @@ export interface ledgerType {
 	metaData: MetaDataType;
 	recipient: Recipient_infoType;
 	received_at?: string;
-	status?: "Pending" | "Approved" | "Rejected" | "Completed";
+	status?: "PENDING" | "APPROVED" | "REJECTED" | "COMPLETED";
 	reference_number?: string;
 	external_reference_id?: string;
-	priority?: "Low" | "Medium" | "High";
+	priority?: "LOW" | "MEDIUM" | "HIGH";
 	approved_by?: string;
 	approved_at?: string;
 	category?: string;

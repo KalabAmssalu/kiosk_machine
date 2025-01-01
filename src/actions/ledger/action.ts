@@ -27,7 +27,7 @@ export const setLedger = async (
 			console.log("key, value", key, value);
 		});
 
-		const response = await axiosInstance.post("ledgers/create", formData, {
+		const response = await axiosInstance.post("ledgers/create/", formData, {
 			headers: {
 				"Content-Type": "multipart/form-data", // Ensure the correct content type
 			},

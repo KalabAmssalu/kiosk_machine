@@ -36,7 +36,7 @@ export interface ledgerType {
 	metadata_language?: string; // optional, can be filled by the record officer and the carrier
 	metadata_status?:
 		| "DRAFT"
-		| "INREVIEW"
+		| "IN_REVIEW"
 		| "APPROVED"
 		| "PUBLISHED"
 		| "ARCHIVED"; // autofilled by the system
@@ -57,10 +57,10 @@ export interface ledgerType {
 	department?: string; // filled by the record officer
 	sector?: string; // filled by the record officer
 	received_at?: string; // autofilled by the system
-	status?: "Pending" | "Approved" | "Rejected" | "Completed"; // autofilled by the system
+	status?: "PENDING" | "APPROVED" | "REJECTED" | "COMPLETED"; // autofilled by the system
 	reference_number?: string; // filled by the record officer
 	external_reference_id?: string; // filled by the record officer
-	priority?: "Low" | "Medium" | "High"; // filled by the record officer
+	priority?: "LOW" | "MEDIUM" | "HIGH"; // filled by the record officer
 	approved_by?: string; // autofilled by the system
 	approved_at?: string; // autofilled by the system
 	deadline?: string;
