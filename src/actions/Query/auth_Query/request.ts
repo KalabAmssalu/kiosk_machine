@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { type ICredentials, signIn, signOut } from "@/actions/auth/action";
 import { useAppDispatch } from "@/hooks/storehooks";
 import useToastMutation from "@/hooks/useToastMutation";
+import { ClearCurrentUser } from "@/lib/store/redux/usersSlice";
 
 export const useLogout = () => {
 	const router = useRouter(); // Initialize the router
@@ -23,7 +24,7 @@ export const useLogout = () => {
 			toast.dismiss();
 			toast.success("Logout... 👋🏾BYE!");
 
-			// dispatch(ClearCurrentUser());
+			dispatch(ClearCurrentUser());
 			router.push("/auth/sign-in" as `/${string}`);
 		},
 		onError: (errorMessage: string) => {

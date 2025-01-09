@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useAppDispatch, useAppSelector } from "@/hooks/storehooks";
+import { useAppDispatch } from "@/hooks/storehooks";
 import { SetLedgers } from "@/lib/store/redux/ledgerSlice";
 import { type ledgerType } from "@/types/CarrierType";
 
@@ -32,7 +32,7 @@ import DocumentMetadataForm, {
 import DocumentUploadForm from "./DocumentUplaodForm";
 import CarrierInfoForm from "./InfoForm";
 import RecipientInfoForm from "./RecipientInfoForm";
-import SenderInfoForm from "./SenderInfoForm";
+// import SenderInfoForm from "./SenderInfoForm";
 import Preview from "./preview";
 
 export default function LedgerRegForm() {
@@ -79,17 +79,17 @@ export default function LedgerRegForm() {
 		metadata_status: "DRAFT",
 		metadata_confidentiality: "PUBLIC",
 
-		sender_name: "",
-		sender_phone_number: "",
-		sender_email: "",
-		sender_address: " ",
-		sender_type: "INDIVIDUAL",
+		// sender_name: "",
+		// sender_phone_number: "",
+		// sender_email: "",
+		// sender_address: " ",
+		// sender_type: "INDIVIDUAL",
 
 		recipient_name: "",
 		recipient_phone_number: "",
 		job_title: "",
 		department: "",
-		sector: "",
+		// sector: "",
 
 		status: "PENDING",
 		reference_number: "",
@@ -152,19 +152,14 @@ export default function LedgerRegForm() {
 		// Append all form fields
 		Object.entries(data).forEach(([key, value]) => {
 			if (value !== undefined && value !== null) {
-				// if (typeof value === "object" && !(value instanceof File)) {
-				// 	formData.append(key, JSON.stringify(value));
-				// } else {
-				// 	formData.append(key, value as string | Blob);
-				// }
-				const cleanedKey = key.startsWith("1_") ? key.substring(2) : key;
+				// const cleanedKey = key.startsWith("1_") ? key.substring(2) : key;
 
 				if (
 					[
 						"carrier_phone_number",
 						"sender_phone_number",
 						"recipient_phone_number",
-					].includes(cleanedKey)
+					].includes(key)
 				) {
 					// Remove '+' symbol if the value is not empty
 					value =
@@ -174,9 +169,9 @@ export default function LedgerRegForm() {
 				}
 
 				if (typeof value === "object" && !(value instanceof File)) {
-					formData.append(cleanedKey, JSON.stringify(value));
+					formData.append(key, JSON.stringify(value));
 				} else {
-					formData.append(cleanedKey, value as string | Blob);
+					formData.append(key, value as string | Blob);
 				}
 			}
 		});
@@ -203,6 +198,24 @@ export default function LedgerRegForm() {
 			setIsSubmitting(false);
 		}
 	};
+
+	const handleMetadataComplete = (metadata: MetaDataType) => {
+		// Update form data with all metadata fields
+		updateFormData({
+			metadata_title: metadata.metadata_title,
+			metadata_description: metadata.metadata_description,
+			metadata_author: metadata.metadata_author,
+			metadata_dateCreated: metadata.metadata_dateCreated,
+			metadata_lastModified: metadata.metadata_lastModified,
+			metadata_version: metadata.metadata_version,
+			metadata_keywords: metadata.metadata_keywords,
+			metadata_tags: metadata.metadata_tags,
+			metadata_category: metadata.metadata_category,
+			metadata_fileType: metadata.metadata_fileType,
+			metadata_language: metadata.metadata_language,
+		});
+	};
+
 	const steps = [
 		{
 			title: "Carrier Information",
@@ -227,17 +240,17 @@ export default function LedgerRegForm() {
 			),
 		},
 
-		{
-			title: "Sender Information",
-			content: (
-				<SenderInfoForm
-					onFormComplete={(data) => {
-						updateFormData(data);
-						nextStep();
-					}}
-				/>
-			),
-		},
+		// {
+		// 	title: "Sender Information",
+		// 	content: (
+		// 		<SenderInfoForm
+		// 			onFormComplete={(data) => {
+		// 				updateFormData(data);
+		// 				nextStep();
+		// 			}}
+		// 		/>
+		// 	),
+		// },
 		{
 			title: "Recipient Information",
 			content: (
@@ -265,12 +278,13 @@ export default function LedgerRegForm() {
 			content: (
 				<DocumentMetadataForm
 					onMetadataComplete={(data) => {
-						updateMetadataUpload(data);
-						nextStep();
+						handleMetadataComplete(data);
+						nextStep(); // Add this to move to the next step
 					}}
 				/>
 			),
 		},
+
 		{
 			title: "Preview",
 			content: (

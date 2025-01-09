@@ -17,10 +17,10 @@ export const useFetchDepartments = () => {
 		queryFn: async () => {
 			try {
 				const data = await getDepartment();
-				// console.log("data",data);
+				console.log("data", data);
 				return data.data.departments;
 			} catch (error: any) {
-				// console.log("error",error);
+				console.log("error", error);
 				toast.error(error.message);
 				throw error;
 			}

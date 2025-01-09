@@ -1,0 +1,299 @@
+{
+	"metadata": {
+		"description": "Build More Efficient, Engaging, and Profitable Online Stores: Relivator Enhances your eCommerce with the Power of shadcn/ui, Next.js 15, React 19, and more",
+		"title": {
+			"home": "Home"
+		}
+	},
+	"mode-toggle": {
+		"dark": "Duukkana",
+		"light": "adii",
+		"system": "System",
+		"toggleTheme": "Mata duree Jijjiirraa"
+	},
+	"LocaleSwitcher": {
+		"changeLanguage": " Afaan Jijjiirraa ",
+		"english": " Afaan Ingliiffaa",
+		"amharic": " Afaan Amaariffaa",
+		"oromiffa": "Affan oromiffa"
+	},
+	"Login": {
+		"loginTitle": "Seensa DM Maashinii Kiyooskii",
+		"loginPrompt": "Akkaawuntii keessaniin seena ",
+		"email": "Imeelii",
+		"password": "Jecha iccitii",
+		"forgotPassword": "Jecha icciitii kee dagattee?",
+		"login": "Galmaa'aa"
+	},
+	"LandingPage": {
+		"title": "Baga gara Ministeera Innooveeshinii fi Teeknooloojiitti dhuftan",
+		"subtitle": " Innooveeshinii fi Teeknooloojii Itiyoophiyaa kessaati Dhaabbata adda duree",
+		"description": "Ministeerri Innooveeshinii fi Teeknooloojii Itiyoophiyaa jijjiirama amanamaa biyyattii keessatti fiduuf adda durummaan hojjechaa jira!",
+		"videoTitle": "Mul'ata Ministeerichaa qoradhaa",
+		"button": "Itti fufuu"
+	},
+
+	"LedgerForm": {
+		"carrier_information": "Qaamni odeeffannoo/Dhimmicha fide",
+		"DocumentUpload": "Dokumentii Olkaa'uu",
+		"DocumentInfo": "Odeeffannoo Sanadaa",
+		"recipient_info": "Odeeffannoo Fudhataa",
+		"sender_info": "Odeeffannoo Ergaa",
+		"fields": {
+			"carrier_person_first_name": {
+				"label": "Maqaa odeeffannoo/Dhimmicha kanfidee",
+				"placeholder": "Maqaa odeeffannoo/Dhimmicha kanfidee Galchi",
+				"description": "Maqaa oodeeffannoo/Dhimmicha Galchi",
+				"error": "Maqaa odeeffannoo/Dhimmicha kanfidee nibarbaachisa"
+			},
+			"carrier_person_middle_name": {
+				"label": "Maqaa Abbaa odeeffannoo/Dhimmicha kanfidee",
+				"placeholder": "Maqaa Abbaa odeeffannoo/Dhimmicha kanfidee Galchi",
+				"description": "Maqaa Abbaa odeeffannoo/Dhimmicha kanfidee Galchi",
+				"error": "Maqaa Abbaa odeeffannoo/Dhimmicha kanfidee nibarbaachisa"
+			},
+			"carrier_person_last_name": {
+				"label": " Maqaa Akaakayyuu odeeffannoo/Dhimmicha kanfidee",
+				"placeholder": "Maqaa Akaakayyuu odeeffannoo/Dhimmicha kanfidee Galchi",
+				"description": "Maqaa Akaakayyuu odeeffannoo/Dhimmicha kanfidee Galchi",
+				"error": "Maqaa Akaakayyuu odeeffannoo/Dhimmicha kanfidee nibarbaachisa"
+			},
+			"carrier_phone_number": {
+				"label": " Lakkoofsa Bilbila odeeffannoo/Dhimmicha kanfidee",
+				"placeholder": "Lakkoofsa Bilbila odeeffannoo/Dhimmicha kanfidee Galchi",
+				"description": "Lakkoofsa Bilbila odeeffannoo/Dhimmicha kanfidee Galchi",
+				"error": "Lakkoofsa Bilbila odeeffannoo/Dhimmicha kanfidee nibarbaachisa"
+			},
+			"carrier_type": {
+				"label": "Akkaataa odeeffannoo/Dhimmicha kandhufee",
+				"placeholder": "Akkaataa odeeffannoo/Dhimmicha kandhufee Galchi",
+				"description": "Akkaataa odeeffannoo/Dhimmicha kandhufee Galchi",
+				"error": "Akkaataan odeeffannoo/Dhimmicha kandhufee barbaachisaadha",
+				"options": {
+					"Individual": "Dhuunfaa",
+					"Organization": "Dhaabbata"
+				}
+			},
+			"organization_type": {
+				"label": "Akkaataa Jaarmiyaa",
+				"placeholder": "Akkaataa Jaarmiyaa Galchi",
+				"description": "Akkaataa Jaarmiyaa galchi",
+				"error": "Akkaataa Jaarmiyaa nibarbaachisa",
+				"options": {
+					"private": "Dhuunfaa",
+					"EthioPosta": "Poostaa Itoophiyaa",
+					"DHL": "DHL",
+					"Other": "Kan biraa"
+				}
+			},
+			"carrier_organization_id": {
+				"label": "Waraqaa eenyummaa Dhaabbata",
+				"placeholder": "Waraqaa eenyummaa Dhaabbata odeeffannoo/Dhimmicha kanfidee Galchi",
+				"description": "Waraqaa eenyummaa Dhaabbata odeeffannoo/Dhimmicha kanfidee Galchi",
+				"error": "ID Dhaabbata odeeffannoo/Dhimmicha ኒ barbaachisa"
+			},
+			"carrier_plate_number": {
+				"label": "odeeffannoo kanfidee Lakkoofsa Gabatee",
+				"placeholder": "Lakkoofsa Gabatee odeeffannoo/Dhimmicha kanfidee Galchi",
+				"description": "Lakkoofsa Gabatee odeeffannoo/Dhimmicha kanfidee Galchi",
+				"error": "Lakkoofsa Gabatee odeeffannoo/Dhimmicha kanfidee nibarbaachisa"
+			},
+			"letters": {
+				"label": "Xalayaa",
+				"placeholder": "Xalayaa Galchi",
+				"description": "Xalayaa Galchi",
+				"error": "Xalayaa barbaachisadhaa"
+			},
+			"attachments": {
+				"label": "Dabalata ",
+				"placeholder": "Dabalata Galchi",
+				"description": "Dabalata Galchi",
+				"error": "Dabalata galchun nibarbaachisa"
+			},
+			"additional_message": {
+				"label": "Ergaa Dabalataa",
+				"placeholder": "Ergaa Dabalataa Galchi",
+				"description": "Ergaa Dabalataa Galchi",
+				"error": "Ergaa dabalataa nibarbaachisa"
+			},
+			"document_type": {
+				"label": "Gosa Galmee/Sanadaa ",
+				"placeholder": "Gosa Galmee Galchi",
+				"description": "Gosa Galmee/Sanadaa  Galchi",
+				"error": "Gosa Galmee barbaachisadhaa"
+			},
+			"document_date": {
+				"label": "Guyyaa Galmee/Sanadaa ",
+				"placeholder": "Guyyaa Galmee/Sanadaa  Galchi",
+				"description": "Guyyaa Galmee/Sanadaa  Galchi",
+				"error": "Guyyaa Galmee/Sanadaa nibarbaachisa"
+			},
+			"document_owner": {
+				"label": "Abbaa Galmee/Sanadaa  ",
+				"placeholder": "Abbaa Galmee/Sanadaa  Galchi",
+				"description": "Abbaa Galmee/Sanadaa  Galchi",
+				"error": "Abbaa Galmee/Sanadaa nibarbaachisa"
+			},
+			"ledger_id": {
+				"label": "ID galmee",
+				"placeholder": "ID galmee galchi",
+				"description": "ID galmee galchi",
+				"error": "ID galmee nibarbaachisa"
+			},
+			"ledger_subject": {
+				"label": "Dhimmicha Galmee",
+				"placeholder": " Dhimmicha Galmee Galchi",
+				"description": " Dhimmicha Galmee Galchi",
+				"error": "Dhimmicha Galmee nibarbaachisa"
+			},
+			"ledger_description": {
+				"label": "Ibsa Galmee",
+				"placeholder": "Ibsa Galmee Galchi",
+				"description": "Ibsa Galmee Galchi",
+				"error": "Ibsi Galmeebarbaachisaadha"
+			},
+			"ledger_type": {
+				"label": " Gosa Galmee ",
+				"placeholder": "Gosa Galmee Galchi",
+				"description": "Gosa Galmee Galchi",
+				"error": "Gosa Galmee barbaachisadha"
+			},
+			"delivery_medium": {
+				"label": "Kaaraa Ergaamuun",
+				"placeholder": "Kaaraa Ergaamuun Galchi",
+				"description": "Kaaraa Ergaamuun a Galchi",
+				"error": "Kaaraa Ergaamuun  nibarbaachisa",
+				"options": {
+					"RIDE": "RIDE",
+					"POSTA": "poostaa",
+					"PRIVATE": "DHUUNFAA",
+					"MOTOR": "MOTORA",
+					"OTHER": "KAN BIRAA"
+				}
+			},
+			"external_reference_id": {
+				"label": "ID Wabii Alaa",
+				"placeholder": "ID Wabii Alaa",
+				"description": "ID Wabii Alaa Galchi",
+				"error": "ID Wabii Alaa sirrii miti"
+			},
+			"delivery_channel": {
+				"label": "Kaaraa Ergaamun ",
+				"placeholder": "Kaaraa Ergaamun Galchaa",
+				"description": "Kaaraa Ergaamun  Galchaa",
+				"error": "Kaaraa Ergaamun  barbaachisaadhaa",
+				"options": {
+					"INPERSON": "DHAABBATA GALMEE ERGUU ",
+					"DELIVERY": "DHAABBATA GALMEE GEESUU"
+				}
+			},
+			"delivery_organization": {
+				"label": "Dhaabbata Ergaamun",
+				"placeholder": "Dhaabbata Ergaamun Galchi",
+				"description": "Dhaabbata Ergaamun Galchi",
+				"error": "Dhaabbanni Geejjibaa barbaachisa"
+			},
+			"tracking_number": {
+				"label": "Lakkoofsa Hordoffii",
+				"placeholder": "Lakkoofsa Hordoffii Galchi",
+				"description": "Lakkoofsa Hordoffii Galchi",
+				"error": "Lakkoofsa Hordoffii nibarbaachisaa"
+			},
+			"expected_delivery_date": {
+				"label": "Guyyaa Galma akaaga'uu  Eegamu",
+				"placeholder": "Guyyaa Galma akaaga'uu  Eegamu Galchi",
+				"description": "Guyyaa Guyyaa Galma akaagau  Galchi",
+				"error": "Guyyaa Geejjibaa Eegamu barbaachisa"
+			},
+			"delivery_status": {
+				"label": "Haala Eergatii",
+				"placeholder": "Haala Eergatii Galchi",
+				"description": "Haala Eergatii Galchi",
+				"error": "Haala Eergatii Galchuun barbaachisa"
+			},
+			"meta_tags": {
+				"label": "Meta Tags",
+				"placeholder": "Meta Tags Galchi",
+				"description": "Meta Tags Galchi",
+				"error": "Meta Tags barbaachisaadhaa "
+			},
+			"source_system": {
+				"label": "sirna iirraa madda",
+				"placeholder": "sirna iirraa  madda Galchi",
+				"description": "sirna iirraa  madda Galchi",
+				"error": "sirna iirraa  madda barbaachisaadhaa"
+			},
+			"recipient_name": {
+				"label": " Maqaa fudhataa ",
+				"placeholder": " Maqaa fudhataa Galchi",
+				"description": "Maqaa fudhataa Galchi ",
+				"error": "Maqaa fudhataa nibarbaachisa"
+			},
+			"recipient_phone_number": {
+				"label": "Lakkoofsa Bilbilaa Fudhataa ",
+				"placeholder": "Lakkoofsa Bilbilaa Fudhataa Galchi",
+				"description": "Lakkoofsa Bilbilaa Fudhataa Galchi",
+				"error": "Lakkoofsa Bilbilaa Fudhataa bniarbaachisa"
+			},
+
+			"recipient_email": {
+				"label": "Imeelii Fudhataa",
+				"placeholder": "Imeelii Fudhataa Galchi",
+				"description": "Imeelii Fudhataa Galchi",
+				"error": "Email Fudhataa nibarbaachisa"
+			},
+			"job_title": {
+				"label": "Gitaa hojii",
+				"placeholder": " Gitaa Hojii",
+				"description": "Gitaa hojii Galchi",
+				"error": "Gitaa hojii nibarbaachisa"
+			},
+			"department": {
+				"label": "Qajeelcha/Dipartimentii ",
+				"placeholder": "Qajeelcha Galchi",
+				"description": "Qajeelcha Galchi ",
+				"error": " Qajeelcha barbaachisaadha "
+			},
+			"sector": {
+				"label": "Damee",
+				"placeholder": "Damee Galchi",
+				"description": "Damee Galchi ",
+				"error": "Dameen barbaachisaadhaa"
+			},
+			"sender_name": {
+				"label": "Maqaa Ergaa",
+				"placeholder": "Maqaa Ergaa Galchi",
+				"description": "Maqaa Ergaa Galchi",
+				"error": "Maqaan Ergaa ni barbaachisa"
+			},
+			"sender_phone_number": {
+				"label": "Lakkoofsa Bilbilaa Ergaa",
+				"placeholder": "Lakkoofsa Bilbilaa Ergaa Galchi",
+				"description": "Lakkoofsa Bilbilaa Ergaa Galchi",
+				"error": "Lakkoofsa Bilbilaa Ergaa ni barbaachisa"
+			},
+			"sender_email": {
+				"label": "Imeelii Ergaa",
+				"placeholder": "Imeelii Ergaa Galchi",
+				"description": "Imeelii Ergaa Galchi",
+				"error": "Imeelii Ergaa ni barbaachisa"
+			},
+			"sender_address": {
+				"label": "Teessoo Ergaa",
+				"placeholder": "Teessoo Ergaa Galchi",
+				"description": "Teessoo Ergaa Galchi",
+				"error": "Teessoo Ergaa ni barbaachisa"
+			},
+			"sender_type": {
+				"label": "Gosa Ergaa",
+				"placeholder": "Gosa Ergaa Filadhu",
+				"description": "Ergaan Dhuunfaa ykn Dhaabbata ta'uu isaa filadhu",
+				"error": "Gosti Ergaa ni barbaachisa",
+				"options": {
+					"INDIVIDUAL": "DHUUNFAA",
+					"ORGANIZATION": "DHAABBATA"
+				}
+			}
+		}
+	}
+}

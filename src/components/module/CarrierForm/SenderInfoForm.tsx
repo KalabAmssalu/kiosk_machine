@@ -40,7 +40,6 @@ export default function SenderInfoForm({
 	function onSubmit(data: SenderInfoFormValues) {
 		onFormComplete(data);
 		setVisible(false);
-		console.log("data to submit", data);
 	}
 
 	return (

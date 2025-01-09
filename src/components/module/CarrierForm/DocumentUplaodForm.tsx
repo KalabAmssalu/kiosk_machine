@@ -42,9 +42,11 @@ export default function DocumentUploadForm({
 
 	// Submit handler
 	function onSubmit(data: DocumentUploadFormValues) {
-		onFileComplete(letters, attachments);
+		onFileComplete(
+			letters || [],
+			attachments || [] // Use empty array if no attachments
+		);
 		setVisible(false);
-		console.log("Submitted data:", data);
 	}
 
 	// File change handlers
@@ -80,6 +82,7 @@ export default function DocumentUploadForm({
 							labelKey="fields.attachments.label"
 							descriptionKey="fields.attachments.description"
 							local="LedgerForm"
+							required={false}
 							control={form.control}
 							onFilesChange={handleAttachmentsFilesChange}
 						/>

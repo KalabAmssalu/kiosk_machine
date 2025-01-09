@@ -42,15 +42,15 @@ export default function RecipientInfoForm({
 			recipient_phone_number: "",
 			job_title: "",
 			department: "",
-			sector: "",
+			// sector: "",
 		},
 	});
 
 	// Submit handler
 	function onSubmit(data: RecipientInfoFormValues) {
+		console.log("data to submit", data);
 		onFormComplete(data);
 		setVisible(false);
-		console.log("data to submit", data);
 	}
 
 	// Transform data for dropdown options
@@ -125,7 +125,7 @@ export default function RecipientInfoForm({
 							required
 						/>
 
-						<ReusableFormField
+						{/* <ReusableFormField
 							control={form.control}
 							name="sector"
 							type="text"
@@ -133,7 +133,7 @@ export default function RecipientInfoForm({
 							labelKey="fields.sector.label"
 							placeholderKey="fields.sector.placeholder"
 							descriptionKey="fields.sector.description"
-						/>
+						/> */}
 					</div>
 				</fieldset>
 

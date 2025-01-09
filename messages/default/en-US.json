@@ -14,7 +14,8 @@
 	"LocaleSwitcher": {
 		"changeLanguage": "Change Language",
 		"english": "English",
-		"amharic": "Amharic"
+		"amharic": "Amharic",
+		"oromiffa": "Oromiffa"
 	},
 	"Login": {
 		"loginTitle": "Kiosk Machine DMS Login",
@@ -173,8 +174,8 @@
 				}
 			},
 			"external_reference_id": {
-				"label": "External Reference ID",
-				"placeholder": "External Reference ID",
+				"label": "External Reference ID *Add if available",
+				"placeholder": "External Reference ID *Add if available",
 				"description": "Enter External Reference ID",
 				"error": "External Reference ID is invalid"
 			},

@@ -104,7 +104,7 @@ export default function DocumentMetadataForm({
 	const [preview, setPreview] = useState<DocumentMetadataFormValues | null>(
 		null
 	);
-
+	const [showPreview, setShowPreview] = useState(false);
 	const form = useForm<DocumentMetadataFormValues>({
 		resolver: zodResolver(documentMetadataSchema),
 		defaultValues: {
@@ -127,10 +127,15 @@ export default function DocumentMetadataForm({
 
 	function onSubmit(data: DocumentMetadataFormValues) {
 		setPreview(data);
-		console.log(data);
-		onMetadataComplete(data);
+		setShowPreview(true);
+		// Don't call onMetadataComplete here, wait for "Continue to Preview" click
 	}
 
+	function handleContinueToPreview() {
+		if (preview) {
+			onMetadataComplete(preview);
+		}
+	}
 	return (
 		<div className="container mx-auto p-4 mb-20">
 			<h1 className="text-2xl text-center font-bold mb-6">
@@ -394,7 +399,7 @@ export default function DocumentMetadataForm({
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
-						{preview ? (
+						{preview && showPreview ? (
 							<div className="space-y-4">
 								<div>
 									<h2 className="text-xl font-semibold">
@@ -451,12 +456,20 @@ export default function DocumentMetadataForm({
 										))}
 									</div>
 								</div>
+								<Button
+									className="mt-4 w-full"
+									onClick={handleContinueToPreview}
+								>
+									Continue to Preview
+								</Button>
 							</div>
 						) : (
-							<p className="text-gray-500 italic">
-								Fill out the form and submit to see a preview of your document
-								metadata
-							</p>
+							<div>
+								<p className="text-gray-500 italic">
+									Fill out the form and submit to see a preview of your document
+									metadata
+								</p>
+							</div>
 						)}
 					</CardContent>
 				</Card>

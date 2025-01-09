@@ -26,13 +26,11 @@ export const setLedger = async (
 		formData.forEach((value, key) => {
 			console.log("key, value", key, value);
 		});
-
 		const response = await axiosInstance.post("ledgers/create/", formData, {
 			headers: {
 				"Content-Type": "multipart/form-data", // Ensure the correct content type
 			},
 		});
-		console.log("response", response);
 
 		return {
 			ok: response.status >= 200 && response.status < 300,
@@ -40,7 +38,7 @@ export const setLedger = async (
 			data: response.data?.data,
 		};
 	} catch (error: any) {
-		console.log("error", error);
+		console.log("er", error);
 		return { ok: false, message: getErrorMessage(error) };
 	}
 };

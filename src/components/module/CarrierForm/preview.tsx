@@ -21,9 +21,6 @@ const Preview = forwardRef<HTMLDivElement, PersonalInfoProps>(
 	({ onConfirm, letters, attachments, type }, ref) => {
 		const data = useAppSelector((state) => state.ledger.ledgers[0]);
 		const [currentPage, setCurrentPage] = useState(0); // Track current page
-		console.log("letters, attachments,", letters, attachments);
-		console.log("data", data);
-		console.log(type);
 		const displayedData = useMemo(() => {
 			if (!data) return null;
 
@@ -33,7 +30,7 @@ const Preview = forwardRef<HTMLDivElement, PersonalInfoProps>(
 		const handlemodal = () => {
 			onConfirm();
 		};
-
+		console.log("displayedData", displayedData);
 		// Helper to split content into pages
 		const paginateContent = (content: React.JSX.Element[]) => {
 			const itemsPerPage = 10; // Customize based on your layout
@@ -53,32 +50,32 @@ const Preview = forwardRef<HTMLDivElement, PersonalInfoProps>(
 						"carrier_organization_id",
 						"carrier_plate_number",
 						"carrier_phone_number",
-					].map((key) => (
-						<Field
-							key={key}
-							label={key}
-							value={String(
-								displayedData[key as keyof typeof displayedData] || ""
-							)}
-							local="LedgerForm.fields"
-						/>
-					)),
+					]
+						.filter((key) => displayedData[key as keyof typeof displayedData])
+						.map((key) => (
+							<Field
+								key={key}
+								label={key}
+								value={String(displayedData[key as keyof typeof displayedData])}
+								local="LedgerForm.fields"
+							/>
+						)),
 					[
 						"sender_name",
 						"sender_phone_number",
 						"sender_email",
 						"sender_address",
 						"sender_type",
-					].map((key) => (
-						<Field
-							key={key}
-							label={key}
-							value={String(
-								displayedData[key as keyof typeof displayedData] || ""
-							)}
-							local="LedgerForm.fields"
-						/>
-					)),
+					]
+						.filter((key) => displayedData[key as keyof typeof displayedData])
+						.map((key) => (
+							<Field
+								key={key}
+								label={key}
+								value={String(displayedData[key as keyof typeof displayedData])}
+								local="LedgerForm.fields"
+							/>
+						)),
 					[
 						"delivery_medium",
 						"delivery_channel",
@@ -87,39 +84,60 @@ const Preview = forwardRef<HTMLDivElement, PersonalInfoProps>(
 						"expected_delivery_date",
 						"delivery_status",
 						"additional_message",
-					].map((key) => (
-						<Field
-							key={key}
-							label={key}
-							value={String(
-								displayedData[key as keyof typeof displayedData] || ""
-							)}
-							local="OrganizationInfoForm.fields"
-						/>
-					)),
+					]
+						.filter((key) => displayedData[key as keyof typeof displayedData])
+						.map((key) => (
+							<Field
+								key={key}
+								label={key}
+								value={String(displayedData[key as keyof typeof displayedData])}
+								local="OrganizationInfoForm.fields"
+							/>
+						)),
 					[
 						"document_type",
 						"document_date",
 						"document_owner",
 						"external_reference_id",
-						"metadata",
-						"meta_tags",
-						"version",
-						"source_system",
+						"metadata_title",
+						"metadata_description",
+						"metadata_author",
+						"metadata_dateCreated",
+						"metadata_lastModified",
+						"metadata_version",
+						"metadata_keywords",
+						"metadata_tags",
+						"metadata_category",
+						"metadata_fileType",
+						"metadata_language",
+						"metadata_status",
+						"metadata_confidentiality",
 						"recipient_name",
 						"recipient_phone_number",
 						"job_title",
 						"department",
-					].map((key) => (
-						<Field
-							key={key}
-							label={key}
-							value={String(
-								displayedData[key as keyof typeof displayedData] || ""
-							)}
-							local="OrganizationInfoForm.fields"
-						/>
-					)),
+					]
+						.filter((key) => {
+							const value = displayedData[key as keyof typeof displayedData];
+							return value !== undefined && value !== null && value !== "";
+						})
+						.map((key) => {
+							const value = displayedData[key as keyof typeof displayedData];
+							// Handle array or object values
+							const displayValue =
+								Array.isArray(value) || typeof value === "object"
+									? JSON.stringify(value)
+									: String(value);
+
+							return (
+								<Field
+									key={key}
+									label={key}
+									value={displayValue}
+									local="OrganizationInfoForm.fields"
+								/>
+							);
+						}),
 				]
 			: [];
 

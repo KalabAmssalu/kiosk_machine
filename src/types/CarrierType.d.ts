@@ -55,7 +55,7 @@ export interface ledgerType {
 	recipient_phone_number?: string; // filled by the record officer
 	job_title?: string; // filled by the record officer
 	department?: string; // filled by the record officer
-	sector?: string; // filled by the record officer
+	// sector?: string; // filled by the record officer
 	received_at?: string; // autofilled by the system
 	status?: "PENDING" | "APPROVED" | "REJECTED" | "COMPLETED"; // autofilled by the system
 	reference_number?: string; // filled by the record officer

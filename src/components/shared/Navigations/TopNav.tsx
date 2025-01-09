@@ -22,10 +22,8 @@ const TopNav = () => {
 							Kiosk Machine Admin
 						</div>
 					</div>
-
 					<div className="mr-0 flex items-center gap-2 md:mr-2">
 						<LocaleSwitcher />
-
 						<ModeToggle />
 					</div>
 				</div>
@@ -33,5 +31,4 @@ const TopNav = () => {
 		</nav>
 	);
 };
-
 export default TopNav;

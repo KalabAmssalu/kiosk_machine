@@ -19,7 +19,8 @@
 	"LocaleSwitcher": {
 		"changeLanguage": "ቋንቋን ለውጥ",
 		"english": "እንግሊዝኛ",
-		"amharic": "አማርኛ"
+		"amharic": "አማርኛ",
+		"oromiffa": "ኦሮምኛ"
 	},
 	"Login": {
 		"loginTitle": "ኪዮስክ ማሽን  ዲኤምስ መግቢያ",
@@ -42,6 +43,7 @@
 		"DocumentUpload": "ሰነድ መጫኛ",
 		"DocumentInfo": "የሰነድ መረጃ",
 		"recipient_info": "የተቀባይ መረጃ",
+		"sender_info": "ላኪ መረጃ",
 		"fields": {
 			"carrier_person_first_name": {
 				"label": "የአምጪዉ የመጀመሪያ ስም",
@@ -106,13 +108,15 @@
 				"label": "ደብዳቤዎች",
 				"placeholder": "ደብዳቤዎችን ያስገቡ",
 				"description": "ደብዳቤዎችን ያስገቡ",
-				"error": "ደብዳቤዎች ያስፈልጋሉ"
+				"error": "ደብዳቤዎች ያስፈልጋሉ",
+				"fileTypeError": "የማይፈቀድ የፋይል አይነት ነው። እባኮትን ትክክለኛ የፋይል አይነት ያስገቡ።"
 			},
 			"attachments": {
 				"label": "አባሪዎች",
 				"placeholder": "አባሪዎችን ያስገቡ",
 				"description": "አባሪዎችን ያስገቡ",
-				"error": "አባሪዎች ያስፈልጋሉ"
+				"error": "አባሪዎች ያስፈልጋሉ",
+				"fileTypeError": "የማይፈቀድ የፋይል አይነት ነው። እባኮትን ትክክለኛ የፋይል አይነት ያስገቡ።"
 			},
 			"additional_message": {
 				"label": "ተጨማሪ መልእክት",
@@ -177,8 +181,8 @@
 			},
 			"external_reference_id": {
 				"label": "የውጪ ማጣቀሻ መታወቂያ",
-				"placeholder": "የውጪ ማጣቀሻ መታወቂያ ያስገቡ",
-				"description": "የውጪ ማጣቀሻ መታወቂያ ያስገቡ",
+				"placeholder": "የውጪ ማጣቀሻ መታወቂያ ያስገቡ *እባክዎ ካለ ያስገቡ",
+				"description": "የውጪ ማጣቀሻ መታወቂያ ያስገቡ *እባክዎ ካለ ያስገቡ",
 				"error": "የውጪ ማጣቀሻ መታወቂያ የተሳሳተ ነው"
 			},
 			"delivery_channel": {
@@ -226,6 +230,41 @@
 				"placeholder": "መነሻ ስርዓት ያስገቡ",
 				"description": "መነሻ ስርዓት ያስገቡ",
 				"error": "መነሻ ስርዓት ያስፈልጋል"
+			},
+
+			"sender_name": {
+				"label": "ላኪ ስም",
+				"placeholder": "ላኪ ስም ያስገቡ",
+				"description": "ላኪ ስም ያስገቡ",
+				"error": "ላኪ ስም ማስገባት አስፈላጊ ነው"
+			},
+			"sender_phone_number": {
+				"label": "ላኪ ስልክ ቁጥር",
+				"placeholder": "ላኪ ስልክ ቁጥር ያስገቡ",
+				"description": "ላኪ ስልክ ቁጥር ያስገቡ",
+				"error": "ላኪ ስልክ ቁጥር ማስገባት አስፈላጊ ነው"
+			},
+			"sender_email": {
+				"label": "ላኪ ኢሜል",
+				"placeholder": "ላኪ ኢሜል ያስገቡ",
+				"description": "ላኪ ኢሜል ያስገቡ",
+				"error": "ላኪ ኢሜል ማስገባት አስፈላጊ ነው"
+			},
+			"sender_address": {
+				"label": "ላኪ አድራሻ",
+				"placeholder": "ላኪ አድራሻ ያስገቡ",
+				"description": "ላኪ አድራሻ ያስገቡ",
+				"error": "ላኪ አድራሻ ማስገባት አስፈላጊ ነው"
+			},
+			"sender_type": {
+				"label": "ላኪ አይነት",
+				"placeholder": "ላኪ አይነት ይምረጡ",
+				"description": "ላኪ ተመን እንደ ግለሰብ ወይም እንደ ድርጅት ይምረጡ",
+				"error": "ላኪ አይነት ማስገባት አስፈላጊ ነው",
+				"options": {
+					"INDIVIDUAL": "ግለሰብ",
+					"ORGANIZATION": "ድርጅት"
+				}
 			},
 			"recipient_name": {
 				"label": "የተቀባይ ስም",
