@@ -29,7 +29,12 @@ export const useLogout = () => {
 		},
 		onError: (errorMessage: string) => {
 			toast.dismiss();
-			toast.error(errorMessage);
+			if (typeof errorMessage === "string") {
+				toast.error(errorMessage); // Display the string error message
+			} else {
+				console.error("Unexpected error format", errorMessage);
+				toast.error("An unknown error occurred."); // Fallback for unrecognized formats
+			}
 		},
 	});
 };
@@ -46,10 +51,22 @@ export const useSignIn = () => {
 				toast.success("logged in successfully");
 				router.push("/dashboard/home" as `/${string}`);
 			},
-			onError: (errorMessage: string) => {
-				console.log("errorMessage: ", errorMessage);
+
+			onError: (errorMessage: any) => {
 				toast.dismiss();
-				toast.error(errorMessage);
+				if (typeof errorMessage === "object" && errorMessage !== null) {
+					const extractedMessage =
+						errorMessage?.response?.data?.message || // Try extracting 'message' from response data
+						errorMessage?.message || // Fallback to 'message' field
+						JSON.stringify(errorMessage); // Convert the entire object to a string if no specific fields are found
+
+					toast.error(extractedMessage); // Display the extracted message
+				} else if (typeof errorMessage === "string") {
+					toast.error(errorMessage); // Display the string error message
+				} else {
+					console.error("Unexpected error format", errorMessage);
+					toast.error("An unknown error occurred."); // Fallback for unrecognized formats
+				}
 			},
 		}
 	);
