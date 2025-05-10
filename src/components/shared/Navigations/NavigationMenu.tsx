@@ -23,8 +23,6 @@ const navigationMap = [
 		route: "/dashboard/ledger",
 		alternateRoutes: ["/en-US/dashboard/ledger", "/am/dashboard/ledger"],
 	},
-
-	// Add more navigation items here as needed
 ];
 
 export function NavigationMenuConf() {
@@ -35,19 +33,47 @@ export function NavigationMenuConf() {
 
 	return (
 		<NavigationMenu>
-			<NavigationMenuList>
+			<NavigationMenuList className="gap-4">
 				{navigationMap.map(({ label, route, alternateRoutes }) => (
 					<NavigationMenuItem key={route}>
 						<Link href={route as `/${string}`} legacyBehavior passHref>
-							<NavigationMenuLink className="bg-transparent">
+							<NavigationMenuLink>
 								<Button
 									className={cn(
-										isActive(route, alternateRoutes) && "border-b-4",
-										"hover:border-b-4 hover:bg-transparent font-bold w-[300px] hover rounded-none"
+										"relative group px-6 py-2 h-12",
+										"bg-transparent hover:bg-transparent",
+										"text-sky-300 dark:text-sky-100 font-semibold",
+										"transition-all duration-300 ease-out",
+										"overflow-hidden",
+										isActive(route, alternateRoutes) &&
+											"text-sky-900 dark:text-sky-100"
 									)}
-									variant={"ghost"}
+									variant="ghost"
 								>
-									{label}
+									{/* Background hover effect */}
+									<div className="absolute inset-0 w-full h-full">
+										<div className="absolute inset-0 bg-sky-100 dark:bg-sky-800 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-lg"></div>
+									</div>
+
+									{/* Border line effect */}
+									<div
+										className={cn(
+											"absolute bottom-0 left-0 w-full h-0.5 bg-sky-500",
+											"transform scale-x-0 group-hover:scale-x-100",
+											"transition-transform duration-300 ease-out origin-left",
+											isActive(route, alternateRoutes) && "scale-x-100"
+										)}
+									></div>
+
+									{/* Text with hover effect */}
+									<span className="relative z-10 transform group-hover:translate-y-0 transition-transform duration-300">
+										{label}
+									</span>
+
+									{/* Active indicator */}
+									{isActive(route, alternateRoutes) && (
+										<div className="absolute inset-0 bg-sky-100 dark:bg-sky-800/50 rounded-lg -z-[1]"></div>
+									)}
 								</Button>
 							</NavigationMenuLink>
 						</Link>

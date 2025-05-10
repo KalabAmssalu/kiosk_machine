@@ -1,8 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-// import { useLogout } from "@/actions/Query/auth-Query/auth";
+import { useLogout } from "@/actions/Query/auth_Query/request";
+import { get_user } from "@/actions/auth/action";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/custom/modeToggle";
 import {
@@ -20,11 +23,34 @@ import { NavigationMenuConf } from "./NavigationMenu";
 
 const MainNav = () => {
 	// 	const t = useTranslations();
-	// const { mutate: logOut } = useLogout();
+	const { mutate: logOut } = useLogout();
 
 	const route = useRouter();
+	const [userName, setUserName] = useState<string>("Loading...");
+
+	useEffect(() => {
+		const fetchUser = async () => {
+			try {
+				const userData = await get_user();
+				const fullName =
+					[userData.first_name_en || "", userData.last_name_en || ""]
+						.filter(Boolean)
+						.join(" ") ||
+					userData.username ||
+					userData.email ||
+					"User";
+				setUserName(fullName);
+			} catch (error) {
+				console.error("Error fetching user:", error);
+				setUserName("User");
+			}
+		};
+
+		fetchUser();
+	}, []);
+
 	const handleLogout = () => {
-		// logOut();
+		logOut();
 	};
 	return (
 		<nav className="bg-blue-500 z-50 w-full">
@@ -57,32 +83,20 @@ const MainNav = () => {
 									size="icon"
 									className="rounded-full h-[45px] w-[45px] overflow-hidden "
 								>
-									{/* <Image
-										src={IMAGES.logoOnly}
+									<Image
+										src="https://media.istockphoto.com/id/1332100919/vector/man-icon-black-icon-person-symbol.jpg?s=612x612&w=0&k=20&c=AVVJkvxQQCuBhawHrUhDRTCeNQ3Jgt0K1tXjJsFy1eg="
 										height={40}
 										width={40}
-										alt={"logo"}
-									/> */}
+										alt="logo"
+										className="h-full w-full object-cover"
+									/>
 									<span className="sr-only">Toggle user menu</span>
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent align="end" className="w-56">
 								<DropdownMenuLabel className="flex gap-2 text-sm text-customOrange">
-									{/* <span>{userRole}:</span>
-								<span>{user}</span> */}
-									Black Lion Hospital
+									{userName}
 								</DropdownMenuLabel>
-								<DropdownMenuSeparator />
-								<DropdownMenuItem className="cursor-pointer">
-									My Account
-								</DropdownMenuItem>
-								<DropdownMenuSeparator />
-								<DropdownMenuItem className="cursor-pointer">
-									Settings
-								</DropdownMenuItem>
-								<DropdownMenuItem className="cursor-pointer">
-									Support
-								</DropdownMenuItem>
 								<DropdownMenuSeparator />
 								<DropdownMenuItem onClick={() => handleLogout()}>
 									Logout

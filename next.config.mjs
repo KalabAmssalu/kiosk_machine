@@ -5,6 +5,9 @@ const nextConfig = {
 	experimental: {
 		typedRoutes: true,
 	},
+	images: {
+		domains: ["media.istockphoto.com"],
+	},
 };
 
 const withNextIntl = createNextIntlPlugin();

@@ -1,14 +1,14 @@
 export interface ledgerType {
-	carrier_person_first_name: string;
-	carrier_person_middle_name: string;
+	carrier_person_first_name?: string;
+	carrier_person_middle_name?: string;
 	carrier_person_last_name?: string;
-	carrier_phone_number: string;
-	carrier_type?: "Individual" | "Organization";
+	carrier_phone_number?: string;
+	carrier_type?: "INDIVIDUAL" | "ORGANIZATION";
 	carrier_organization_id?: string;
 	carrier_plate_number?: string;
-	letters: File[];
-	attachments: File[];
-	additional_message: string;
+	letters?: File[];
+	attachments?: File[];
+	additional_message?: string;
 	document_type?: "Letter" | "Invoice" | "Receipt" | "Report" | "Other";
 	document_date?: string;
 	document_owner?: string;
@@ -21,42 +21,46 @@ export interface ledgerType {
 	delivery_organization?: string;
 	tracking_number?: string; // autofilled by the system
 	expected_delivery_date?: string;
-	delivery_status?: "Pending" | "Stamped" | "Delivered";
+	delivery_status?: "PENDING" | "STAMPED" | "DELIVERED";
 
-	metaData_title?: string; // optional, can be filled by the record officer and the carrier
-	metaData_description?: string; // optional, can be filled by the record officer and the carrier
-	metaData_author?: string; // optional, can be filled by the record officer and the carrier
-	metaData_dateCreated?: string; // optional, can be filled by the record officer and the carrier
-	metaData_lastModified?: string; // optional, can be filled by the record officer and the carrier
-	metaData_version?: string; // optional, can be filled by the record officer and the carrier
-	metaData_keywords?: string; // optional, can be filled by the record officer and the carrier
-	metaData_tags?: string; // optional, can be filled by the record officer and the carrier
-	metaData_category?: string; // optional, can be filled by the record officer and the carrier
-	metaData_fileType?: string; // optional, can be filled by the record officer and the carrier
-	metaData_language?: string; // optional, can be filled by the record officer and the carrier
-	metaData_status?:
-		| "Draft"
-		| "In Review"
-		| "Approved"
-		| "Published"
-		| "Archived"; // autofilled by the system
-	metaData_confidentiality?:
-		| "Public"
-		| "Internal"
-		| "Confidential"
-		| "Restricted"; // filled by the record officer and the carrier
-	metaData_source_system?: string;
-
+	metadata_title?: string; // optional, can be filled by the record officer and the carrier
+	metadata_description?: string; // optional, can be filled by the record officer and the carrier
+	metadata_author?: string; // optional, can be filled by the record officer and the carrier
+	metadata_dateCreated?: string; // optional, can be filled by the record officer and the carrier
+	metadata_lastModified?: string; // optional, can be filled by the record officer and the carrier
+	metadata_version?: string; // optional, can be filled by the record officer and the carrier
+	metadata_keywords?: string; // optional, can be filled by the record officer and the carrier
+	metadata_tags?: string; // optional, can be filled by the record officer and the carrier
+	metadata_category?: string; // optional, can be filled by the record officer and the carrier
+	metadata_fileType?: string; // optional, can be filled by the record officer and the carrier
+	metadata_language?: string; // optional, can be filled by the record officer and the carrier
+	metadata_status?:
+		| "DRAFT"
+		| "IN_REVIEW"
+		| "APPROVED"
+		| "PUBLISHED"
+		| "ARCHIVED"; // autofilled by the system
+	metadata_confidentiality?:
+		| "PUBLIC"
+		| "INTERNAL"
+		| "CONFIDENTIAL"
+		| "RESTRICTED"; // filled by the record officer and the carrier
+	metadata_source_system?: string;
+	sender_name?: String;
+	sender_phone_number?: String;
+	sender_email?: String;
+	sender_address?: String;
+	sender_type?: "INDIVIDUAL" | "ORGANIZATION";
 	recipient_name?: string; // filled by the record officer
 	recipient_phone_number?: string; // filled by the record officer
 	job_title?: string; // filled by the record officer
 	department?: string; // filled by the record officer
-	sector?: string; // filled by the record officer
+	// sector?: string; // filled by the record officer
 	received_at?: string; // autofilled by the system
-	status?: "Pending" | "Approved" | "Rejected" | "Completed"; // autofilled by the system
+	status?: "PENDING" | "APPROVED" | "REJECTED" | "COMPLETED"; // autofilled by the system
 	reference_number?: string; // filled by the record officer
 	external_reference_id?: string; // filled by the record officer
-	priority?: "Low" | "Medium" | "High"; // filled by the record officer
+	priority?: "LOW" | "MEDIUM" | "HIGH"; // filled by the record officer
 	approved_by?: string; // autofilled by the system
 	approved_at?: string; // autofilled by the system
 	deadline?: string;

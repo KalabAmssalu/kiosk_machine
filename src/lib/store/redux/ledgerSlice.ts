@@ -6,7 +6,7 @@ interface CarrierType {
 	carrier_person_middle_name: string;
 	carrier_person_last_name: string;
 	carrier_phone_number: string;
-	carrier_type?: "Individual" | "Organization";
+	carrier_type?: "INDIVIDUAL" | "ORGANIZATION";
 	carrier_organization_id?: string;
 	carrier_plate_number?: string;
 }
@@ -21,29 +21,29 @@ interface DocumentType {
 }
 
 interface MetaDataType {
-	metaData_title?: string; // optional, min 1, max 100 characters
-	metaData_description?: string; // optional, max 500 characters
-	metaData_author?: string; // optional, min 1 character
-	metaData_dateCreated?: string; // optional, min 1 character
-	metaData_lastModified?: string; // optional, min 1 character
-	metaData_version?: string; // optional, min 1 character
-	metaData_keywords?: string; // optional, min 1 character
-	metaData_tags?: string; // optional, min 1 character
-	metaData_category?: string; // optional, min 1 character
-	metaData_fileType?: string; // optional, min 1 character
-	metaData_language?: string; // optional, min 1 character
-	metaData_status?:
-		| "Draft"
-		| "In Review"
-		| "Approved"
-		| "Published"
-		| "Archived"; // optional enum
-	metaData_confidentiality?:
-		| "Public"
-		| "Internal"
-		| "Confidential"
-		| "Restricted"; // optional enum
-	metaData_source_system?: string;
+	metadata_title?: string; // optional, min 1, max 100 characters
+	metadata_description?: string; // optional, max 500 characters
+	metadata_author?: string; // optional, min 1 character
+	metadata_dateCreated?: string; // optional, min 1 character
+	metadata_lastModified?: string; // optional, min 1 character
+	metadata_version?: string; // optional, min 1 character
+	metadata_keywords?: string; // optional, min 1 character
+	metadata_tags?: string; // optional, min 1 character
+	metadata_category?: string; // optional, min 1 character
+	metadata_fileType?: string; // optional, min 1 character
+	metadata_language?: string; // optional, min 1 character
+	metadata_status?:
+		| "DRAFT"
+		| "IN_REVIEW"
+		| "APPROVED"
+		| "PUBLISHED"
+		| "ARCHIVED"; // optional enum
+	metadata_confidentiality?:
+		| "PUBLIC"
+		| "INTERNAL"
+		| "CONFIDENTIAL"
+		| "RESTRICTED"; // optional enum
+	metadata_source_system?: string;
 }
 
 interface Delivery_infoType {
@@ -52,7 +52,7 @@ interface Delivery_infoType {
 	delivery_organization: string;
 	tracking_number?: string;
 	expected_delivery_date?: string;
-	delivery_status?: "Pending" | "Shipped" | "Delivered";
+	delivery_status?: "PENDING" | "SHIPPED" | "DELIVERED";
 }
 
 interface Recipient_infoType {
@@ -73,10 +73,10 @@ export interface ledgerType {
 	metaData: MetaDataType;
 	recipient: Recipient_infoType;
 	received_at?: string;
-	status?: "Pending" | "Approved" | "Rejected" | "Completed";
+	status?: "PENDING" | "APPROVED" | "REJECTED" | "COMPLETED";
 	reference_number?: string;
 	external_reference_id?: string;
-	priority?: "Low" | "Medium" | "High";
+	priority?: "LOW" | "MEDIUM" | "HIGH";
 	approved_by?: string;
 	approved_at?: string;
 	category?: string;
@@ -84,7 +84,7 @@ export interface ledgerType {
 
 // Define the initial state for the ledger slice
 const initialState = {
-	ledgers: [] as ledgerType[], // Array to hold the ledgers
+	ledgers: [] as Partial<ledgerType>[], // Array to hold the ledgers
 };
 
 // Create the ledger slice
@@ -93,7 +93,10 @@ const ledgerSlice = createSlice({
 	initialState,
 	reducers: {
 		// Action to set the ledgers array
-		SetLedgers: (state, action: PayloadAction<ledgerType[]>) => {
+		// SetLedgers: (state, action: PayloadAction<ledgerType[]>) => {
+		// 	state.ledgers = action.payload;
+		// },
+		SetLedgers: (state, action: PayloadAction<Partial<ledgerType>[]>) => {
 			state.ledgers = action.payload;
 		},
 		// Action to add a new ledger

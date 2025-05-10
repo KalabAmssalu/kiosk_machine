@@ -28,20 +28,28 @@ const LocaleSwitcher: NextPage<LocaleSwitcherProps> = ({
 	const router = useRouter();
 	const localeValue = useLocale();
 	const path = usePathname();
-
-	// Safeguard against `undefined`
-	const pathName = path?.split("/").pop() ?? "";
-
-	type SupportedLocale = "en-US" | "am";
+	type SupportedLocale = "en-US" | "am" | "or";
 
 	const handleChange = (nextLocale: SupportedLocale) => {
 		startTransition(() => {
-			if (pathName === "en-US" || pathName === "am") {
-				router.replace(`/${nextLocale}` as `/${string}`);
-			} else {
-				router.replace(`/${nextLocale}/${pathName}` as `/${string}`);
-				router.refresh();
+			const pathSegments = path?.split("/") ?? [];
+			const currentLocaleIndex = pathSegments.findIndex(
+				(segment) => segment === localeValue
+			);
+
+			// Remove the current locale from the path segments
+			if (currentLocaleIndex !== -1) {
+				pathSegments.splice(currentLocaleIndex, 1);
 			}
+
+			// Preserve the query parameters
+			const query = new URLSearchParams(window.location.search).toString();
+			const queryString = query ? `?${query}` : "";
+
+			// Create the new path with the selected locale
+			const newPath = `/${nextLocale}${pathSegments.length ? `/${pathSegments.join("/")}` : ""}${queryString}`;
+			router.replace(newPath as `/${string}`);
+			router.refresh();
 		});
 	};
 
@@ -63,17 +71,24 @@ const LocaleSwitcher: NextPage<LocaleSwitcherProps> = ({
 								{t("LocaleSwitcher.english")}
 							</SelectItem>
 							<SelectItem value="am">{t("LocaleSwitcher.amharic")}</SelectItem>
+							<SelectItem value="or">{t("LocaleSwitcher.oromiffa")}</SelectItem>
 						</SelectContent>
 					</Select>
 				) : (
 					<Avatar
 						onClick={() =>
-							handleChange(localeValue === "en-US" ? "am" : "en-US")
+							handleChange(
+								localeValue === "en-US"
+									? "am"
+									: localeValue === "am"
+										? "or"
+										: "en-US"
+							)
 						}
-						className="cursor-pointer"
+						className="cursor-pointer w-8 h-8 flex items-center justify-center"
 					>
 						<AvatarFallback className="text-xl font-bold">
-							{localeValue === "en-US" ? "አ" : "A"}
+							{localeValue === "en-US" ? "አ" : localeValue === "am" ? "A" : "O"}
 						</AvatarFallback>
 					</Avatar>
 				)}
@@ -86,12 +101,22 @@ const LocaleSwitcher: NextPage<LocaleSwitcherProps> = ({
 					disabled={isPending}
 					onValueChange={handleChange}
 				>
-					<SelectTrigger className="md:w-[150px]">
+					<SelectTrigger className="md:w-[120px] h-6 bg-background">
 						<SelectValue placeholder={t("LocaleSwitcher.changeLanguage")} />
 					</SelectTrigger>
 					<SelectContent>
-						<SelectItem value="en-US">{t("LocaleSwitcher.english")}</SelectItem>
-						<SelectItem value="am">{t("LocaleSwitcher.amharic")}</SelectItem>
+						<SelectItem value="en-US">
+							<span className={"size-5 mr-2 fi fi-us"}></span>
+							{t("LocaleSwitcher.english")}
+						</SelectItem>
+						<SelectItem value="am">
+							<span className={"size-5 mr-2 fi fi-et"}></span>
+							{t("LocaleSwitcher.amharic")}
+						</SelectItem>
+						<SelectItem value="or">
+							<span className={"size-5 mr-2 fi fi-et"}></span>
+							{t("LocaleSwitcher.oromiffa")}
+						</SelectItem>
 					</SelectContent>
 				</Select>
 			</div>

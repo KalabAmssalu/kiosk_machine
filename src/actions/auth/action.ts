@@ -106,7 +106,7 @@ export async function get_user() {
 	try {
 		const response = await axiosInstance.get("auth/me/");
 		const data = await response.data;
-		return data.data;
+		return data.my_profile.user_profile;
 	} catch (error: any) {
 		throw getErrorMessage(error);
 	}
@@ -144,10 +144,14 @@ export async function forgotPassword(email: string) {
 			email,
 		});
 		await setEmail(email);
-		console.log(storeEmail);
-		return { ok: true, message: response.data };
+		return {
+			ok: true,
+			message:
+				typeof response.data === "string"
+					? response.data
+					: response.data.message,
+		};
 	} catch (error: any) {
-		console.log("failed");
 		return {
 			ok: false,
 			message: getErrorMessage(error),
@@ -157,21 +161,20 @@ export async function forgotPassword(email: string) {
 
 export async function verifyOTP(otpArray: number[]) {
 	const email: string = await getEmail();
-	console.log("Email retrieved:", email);
 	const otp: string = otpArray.join("");
 	try {
-		console.log("Sending OTP:", otp);
 		const response = await axiosInstance.post("/auth/verify-otp/", {
 			otp,
 			email,
 		});
-		console.log("Response received:", response.data);
-		return { ok: true, message: response.data };
+		return {
+			ok: true,
+			message:
+				typeof response.data === "string"
+					? response.data
+					: response.data.message,
+		};
 	} catch (error: any) {
-		console.error(
-			"Error during OTP verification:",
-			error.response ? error.response.data : error.message
-		);
 		return {
 			ok: false,
 			message: error.response?.data?.message || error.message,
